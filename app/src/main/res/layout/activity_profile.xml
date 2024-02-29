@@ -1,36 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/headerContainerProfile"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerContainerPrf"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hz_0.075"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vr_1"
+        app:layout_constraintStart_toStartOf="@id/guideline_vr_0.0"
+        app:layout_constraintTop_toTopOf="@id/guideline_hz_0.0">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/app_logo" />
+            android:id="@+id/logo_prf"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/company_logo"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_hdr_hr_1.0"
+            app:layout_constraintEnd_toEndOf="@id/guideline_hdr_vr_0.15"
+            app:layout_constraintStart_toStartOf="@id/guideline_hdr_vr_0.0"
+            app:layout_constraintTop_toTopOf="@id/guideline_hdr_hr_0.0"
+            app:srcCompat="@drawable/app_logo"
+            tools:srcCompat="@drawable/app_logo" />
 
         <TextView
-            android:id="@+id/headerTitle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="1"
+            android:id="@+id/headerTitlePrf"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:padding="5dip"
             android:text="Tailored Leisure"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="34sp"
             android:textStyle="bold"
-            tools:text="Tailored Leisure" />
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_hdr_hr_1.0"
+            app:layout_constraintEnd_toEndOf="@id/guideline_hdr_vr_1"
+            app:layout_constraintStart_toStartOf="@id/guideline_hdr_vr_0.15"
+            app:layout_constraintTop_toTopOf="@id/guideline_hdr_hr_0.0" />
 
-    </LinearLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hdr_vr_0.0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.0" />
 
-</LinearLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hdr_vr_0.15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hdr_vr_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hdr_hr_0.0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hdr_hr_1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hz_0.0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hz_0.075"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.075" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hz_0.30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hz_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vr_0.0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vr_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
