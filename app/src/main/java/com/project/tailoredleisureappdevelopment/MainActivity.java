@@ -2,6 +2,7 @@ package com.project.tailoredleisureappdevelopment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button profileBtn = (Button) findViewById(R.id.profileBtn);
+        Button venuesBtn = (Button) findViewById(R.id.venuesBtn);
 
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,10 +28,23 @@ public class MainActivity extends AppCompatActivity {
                 openProfileActivity();
             }
         });
+
+        venuesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openVenuesActivity();
+            }
+        });
     }
 
     public void openProfileActivity(){
         Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void openVenuesActivity(){
+        Log.d("DEBUG","Inside openVenuesActivity");
+        Intent intent = new Intent(this, VenuesMapsActivity.class);
         startActivity(intent);
     }
 }
