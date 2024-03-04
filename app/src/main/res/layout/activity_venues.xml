@@ -6,12 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.SearchView
+    <fragment
+        android:id="@+id/id_venues_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <EditText
         android:id="@+id/search_map_id"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/background_search_view"
         android:elevation="5dp"
+        android:hint="@string/search_hint"
+        android:padding="8dp"
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hz_0.10"
         app:layout_constraintEnd_toEndOf="@id/guideline_vr_0.95"
@@ -19,12 +27,8 @@
         app:layout_constraintTop_toTopOf="@id/guideline_hz_0.025"
         app:queryHint="Search venues here ..." />
 
-    <fragment
-        android:id="@+id/id_venues_map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/activity_venues" />
+
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hz_0.10"
@@ -53,5 +57,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
+
+    <Button
+        android:id="@+id/venue_search_button_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autoText="false"
+        android:text="View"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vr_0.95"
+        app:layout_constraintStart_toStartOf="@id/guideline_vr_0.05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

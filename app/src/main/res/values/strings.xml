@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Tailored Leisure App Development</string>
     <string name="company_logo">This image is the company logo and it is known as \"Angel of the North\".</string>
+    <string name="search_hint">Search Venues here...</string>
 </resources>

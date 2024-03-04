@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TailoredLeisureAppDevelopment"
         tools:targetApi="31">
         <activity
+            android:name=".VenuesMapsActivityInfo"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
