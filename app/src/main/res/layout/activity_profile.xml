@@ -1,126 +1,559 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:isScrollContainer="true"
+    android:orientation="vertical"
+    android:scrollbars="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerContainerPrf"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_hz_0.075"
-        app:layout_constraintEnd_toEndOf="@id/guideline_vr_1"
-        app:layout_constraintStart_toStartOf="@id/guideline_vr_0.0"
-        app:layout_constraintTop_toTopOf="@id/guideline_hz_0.0">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="false"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
 
-        <ImageView
-            android:id="@+id/logo_prf"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerContainerPrf"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="@string/company_logo"
-            app:layout_constraintBottom_toBottomOf="@id/guideline_hdr_hr_1.0"
-            app:layout_constraintEnd_toEndOf="@id/guideline_hdr_vr_0.15"
-            app:layout_constraintStart_toStartOf="@id/guideline_hdr_vr_0.0"
-            app:layout_constraintTop_toTopOf="@id/guideline_hdr_hr_0.0"
-            app:srcCompat="@drawable/app_logo"
-            tools:srcCompat="@drawable/app_logo" />
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/profileInfoSection"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vr_1"
+            app:layout_constraintStart_toStartOf="@id/guideline_vr_0.0"
+            app:layout_constraintTop_toTopOf="@id/guideline_hz_0.0">
 
-        <TextView
-            android:id="@+id/headerTitlePrf"
-            android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/logo_prf"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/company_logo"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_hdr_hr_1.0"
+                app:layout_constraintEnd_toEndOf="@id/guideline_hdr_vr_0.15"
+                app:layout_constraintStart_toStartOf="@id/guideline_hdr_vr_0.0"
+                app:layout_constraintTop_toTopOf="@id/guideline_hdr_hr_0.0"
+                app:srcCompat="@drawable/app_logo"
+                tools:srcCompat="@drawable/app_logo" />
+
+            <TextView
+                android:id="@+id/headerTitlePrf"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:padding="5dip"
+                android:text="Tailored Leisure"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="@id/guideline_hdr_hr_1.0"
+                app:layout_constraintEnd_toEndOf="@id/guideline_hdr_vr_1"
+                app:layout_constraintStart_toStartOf="@id/guideline_hdr_vr_0.15"
+                app:layout_constraintTop_toTopOf="@id/guideline_hdr_hr_0.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_hdr_vr_0.0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_hdr_vr_0.15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_hdr_vr_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_hdr_hr_0.0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_hdr_hr_1.0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profileInfoSection"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:fontFamily="@font/roboto"
-            android:gravity="center"
-            android:padding="5dip"
-            android:text="Tailored Leisure"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="@id/guideline_hdr_hr_1.0"
-            app:layout_constraintEnd_toEndOf="@id/guideline_hdr_vr_1"
-            app:layout_constraintStart_toStartOf="@id/guideline_hdr_vr_0.15"
-            app:layout_constraintTop_toTopOf="@id/guideline_hdr_hr_0.0" />
+            android:fadeScrollbars="true"
+            android:isScrollContainer="true"
+            android:nestedScrollingEnabled="true"
+            android:scrollbarSize="4dp"
+            android:scrollbars="vertical"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vr_1"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/guideline_vr_0.0"
+            app:layout_constraintTop_toTopOf="@id/guideline_hz_0.075">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/formComponentFive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/saveBtnPrfId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileYourNeedsHeaderTextViewId">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/yourneedsRadioGroupId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_1.0"
+                    app:layout_constraintStart_toStartOf="@id/guideline_vr_0.25"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <CheckBox
+                        android:id="@+id/wheelChairAccessId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="Wheelchair Access"
+                        android:textAlignment="center"
+                        android:textColor="@color/app_blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/closeToToiletsId"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <CheckBox
+                        android:id="@+id/closeToToiletsId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="Close to Toliets Access"
+                        android:textColor="@color/app_blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/platformLiftId"
+                        app:layout_constraintTop_toBottomOf="@+id/wheelChairAccessId" />
+
+                    <CheckBox
+                        android:id="@+id/platformLiftId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="Platform Lift Access"
+                        android:textColor="@color/app_blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/parkingSpacesId"
+                        app:layout_constraintTop_toBottomOf="@+id/closeToToiletsId" />
+
+                    <CheckBox
+                        android:id="@+id/parkingSpacesId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="Parking Space Access"
+                        android:textColor="@color/app_blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/toiletFramesId"
+                        app:layout_constraintTop_toBottomOf="@+id/platformLiftId" />
+
+                    <CheckBox
+                        android:id="@+id/toiletFramesId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="Toilet Frames"
+                        android:textColor="@color/app_blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/walkingFramesId"
+                        app:layout_constraintTop_toBottomOf="@+id/parkingSpacesId" />
+
+                    <CheckBox
+                        android:id="@+id/walkingFramesId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="Walking Frames"
+                        android:textColor="@color/app_blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/toiletFramesId" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_1.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1.0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vr_0.25"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="0dp"
+                    app:layout_constraintGuide_percent="0.2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/profileHeaderTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_layout_top_and_bottom_border"
+                android:fontFamily="@font/roboto"
+                android:padding="15dp"
+                android:text="PROFILE"
+                android:textAlignment="center"
+                android:textColor="@color/app_orange"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/profilePersonalInfoHeaderTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profilePersonalInfoHeaderTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_layout_top_and_bottom_border"
+                android:fontFamily="@font/roboto"
+                android:padding="15dp"
+                android:text="PERSONAL INFORMATION"
+                android:textAlignment="center"
+                android:textColor="@color/app_orange"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/formComponentOne"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileHeaderTextView" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/formComponentOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/formComponentTwo"
+                app:layout_constraintTop_toBottomOf="@+id/profilePersonalInfoHeaderTextView">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.45"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.45" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_1.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1.0" />
+
+                <TextView
+                    android:id="@+id/firstNameId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:padding="10dp"
+                    android:text="FirstName"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/app_blue"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_0.45"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.0"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/firstNameEditTextId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Enter Text here..."
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_1.0"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.45" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/formComponentTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/formComponentThree"
+                app:layout_constraintTop_toBottomOf="@+id/formComponentOne">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.45"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.45" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_1.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1.0" />
+
+                <TextView
+                    android:id="@+id/lastNameId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:padding="10dp"
+                    android:text="LastName"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/app_blue"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_0.45"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.0"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/lastNameEditTextId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Enter Text here..."
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_1.0"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.45" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/formComponentThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/formComponentFour"
+                app:layout_constraintTop_toBottomOf="@+id/formComponentTwo">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.45"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.45" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_1.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1.0" />
+
+                <TextView
+                    android:id="@+id/emailId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:padding="10dp"
+                    android:text="Email Address"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/app_blue"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_0.45"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.0"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/emailEditTextId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Enter Text here..."
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_1.0"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.45" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/formComponentFour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/profileYourNeedsHeaderTextViewId"
+                app:layout_constraintTop_toBottomOf="@+id/formComponentThree">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_0.45"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.45" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_comp_vr_1.0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1.0" />
+
+                <TextView
+                    android:id="@+id/numberId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:padding="10dp"
+                    android:text="Phone Number"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/app_blue"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_0.45"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.0"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/phoneEditTextId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Enter Text here..."
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_1.0"
+                    app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.45" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/profileYourNeedsHeaderTextViewId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_layout_top_and_bottom_border"
+                android:fontFamily="@font/roboto"
+                android:padding="15dp"
+                android:text="YOUR NEEDS"
+                android:textAlignment="center"
+                android:textColor="@color/app_orange"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/formComponentFive"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/formComponentFour" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_hdr_vr_0.0"
-            android:layout_width="wrap_content"
+            android:id="@+id/guideline_hz_0.0"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_hdr_vr_0.15"
-            android:layout_width="wrap_content"
+            android:id="@+id/guideline_hz_0.075"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.15" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.075" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_hdr_vr_1"
-            android:layout_width="wrap_content"
+            android:id="@+id/guideline_hz_1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintGuide_percent="1" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_hdr_hr_0.0"
-            android:layout_width="wrap_content"
+            android:id="@+id/guideline_vr_0.0"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintGuide_percent="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_hdr_hr_1.0"
+            android:id="@+id/guideline_vr_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1.0" />
+
+        <Button
+            android:id="@+id/saveBtnPrfId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="1.0" />
+            android:backgroundTint="@color/app_orange"
+            android:text="Save"
+            android:textColor="@color/app_blue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_hz_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vr_0.0"
+            app:layout_constraintTop_toBottomOf="@+id/profileInfoSection" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_hz_0.0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_hz_0.075"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.075" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_hz_0.30"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".30" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_hz_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vr_0.0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vr_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="1.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -8,10 +8,15 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.project.tailoredleisureappdevelopment.models.Place;
+import com.project.tailoredleisureappdevelopment.models.User;
+
 public class MainActivity extends AppCompatActivity {
 
 
-
+    private User user;
+    Button venuesBtn;
+    Button profileBtn;
 
     //MainActivity Starts here...
     @Override
@@ -19,8 +24,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button profileBtn = (Button) findViewById(R.id.profileBtn);
-        Button venuesBtn = (Button) findViewById(R.id.venuesBtn);
+        user = null;
+
+        try{
+            user = (User) getIntent().getSerializableExtra("USER_OBJECT");
+        } catch (Exception e){
+            Log.d("DEBUG: MainActivity", e.getMessage());
+        }
+
+        profileBtn = (Button) findViewById(R.id.profileBtn);
+        venuesBtn = (Button) findViewById(R.id.venuesBtn);
+
+        if(user!=null){
+            if(!user.getUserNeeds().isEmpty()){
+                venuesBtn.setEnabled(true);
+            }
+        }
+
 
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
