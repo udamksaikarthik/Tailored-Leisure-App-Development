@@ -2,21 +2,35 @@ package com.project.tailoredleisureappdevelopment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.project.tailoredleisureappdevelopment.models.Place;
-import com.project.tailoredleisureappdevelopment.models.User;
+import com.project.tailoredleisureappdevelopment.entities.Person;
+import com.project.tailoredleisureappdevelopment.models.Database;
+import com.project.tailoredleisureappdevelopment.models.PersonModel;
+
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private User user;
-    Button venuesBtn;
-    Button profileBtn;
+    private Person person;
+    private Button venuesBtn;
+    private Button profileBtn;
+    private Button signUpBtn;
+    private Button loginBtn;
+    private EditText loginEmail;
+    private PersonModel personModel;
+    private Boolean authenticationFlg = false;
+    private Database db;
+    private ConstraintLayout buttons_layout_id;
+    private ConstraintLayout authentication_section_container_id;
 
     //MainActivity Starts here...
     @Override
@@ -24,10 +38,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        user = null;
+        signUpBtn = (Button) findViewById(R.id.signup_dashboard_btn_id);
+        loginBtn = (Button) findViewById(R.id.login_dashboard_btn_id);
+        personModel = new PersonModel();
+        db = new Database();
+        buttons_layout_id = (ConstraintLayout) findViewById(R.id.buttons_layout);
+        authentication_section_container_id = (ConstraintLayout) findViewById(R.id.authentication_section_container_id);
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openProfileActivity();
+            }
+        });
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginEmail = (EditText) findViewById(R.id.loginEmailEditTextId);
+                String loginEmailTxt = loginEmail.getText().toString();
+                Log.d("DEBUG: MainActivity", "User Email: "+loginEmailTxt);
+                try {
+                    authenticationFlg = personModel.authenticateUser(db, loginEmailTxt);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                if(authenticationFlg){
+                    buttons_layout_id.setVisibility(View.VISIBLE);
+                    authentication_section_container_id.setVisibility(View.GONE);
+                }else{
+
+                }
+            }
+        });
+
+        // Helps to resolve NullPointerException on SQL Connection
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        person = null;
 
         try{
-            user = (User) getIntent().getSerializableExtra("USER_OBJECT");
+            person = (Person) getIntent().getSerializableExtra("USER_OBJECT");
         } catch (Exception e){
             Log.d("DEBUG: MainActivity", e.getMessage());
         }
@@ -35,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
         profileBtn = (Button) findViewById(R.id.profileBtn);
         venuesBtn = (Button) findViewById(R.id.venuesBtn);
 
-        if(user!=null){
-            if(!user.getUserNeeds().isEmpty()){
+        if(person !=null){
+            if(!person.getUserNeeds().isEmpty()){
                 venuesBtn.setEnabled(true);
             }
         }

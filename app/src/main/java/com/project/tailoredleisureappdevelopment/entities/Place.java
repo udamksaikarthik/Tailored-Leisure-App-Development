@@ -1,6 +1,4 @@
-package com.project.tailoredleisureappdevelopment.models;
-
-import android.net.Uri;
+package com.project.tailoredleisureappdevelopment.entities;
 
 import java.io.Serializable;
 

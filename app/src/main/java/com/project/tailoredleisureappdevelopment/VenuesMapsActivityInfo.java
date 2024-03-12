@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.project.tailoredleisureappdevelopment.models.Place;
+import com.project.tailoredleisureappdevelopment.entities.Place;
 
 public class VenuesMapsActivityInfo extends AppCompatActivity {
 

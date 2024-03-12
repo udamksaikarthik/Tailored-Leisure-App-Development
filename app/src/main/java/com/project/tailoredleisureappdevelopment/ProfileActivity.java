@@ -10,9 +10,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.project.tailoredleisureappdevelopment.models.User;
+import com.project.tailoredleisureappdevelopment.entities.Person;
+import com.project.tailoredleisureappdevelopment.models.Database;
+import com.project.tailoredleisureappdevelopment.models.PersonModel;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -29,10 +32,12 @@ public class ProfileActivity extends AppCompatActivity {
     private CheckBox parkingSpaceAccessBox;
     private CheckBox toiletFrameBox;
     private CheckBox walkingFrameBox;
-    private User user;
+    private Person person;
+    private PersonModel personModel;
+    private Database db;
 
 
-    private ArrayList<String> userNeeds;
+    private ArrayList<Integer> userNeeds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,10 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         profileBtnId = (Button) findViewById(R.id.saveBtnPrfId);
-        userNeeds = new ArrayList<String>();
-        user = new User();
+        userNeeds = new ArrayList<Integer>();
+        person = new Person();
+        personModel = new PersonModel();
+        db = new Database();
 
         profileBtnId.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,31 +65,37 @@ public class ProfileActivity extends AppCompatActivity {
                 walkingFrameBox = findViewById(R.id.walkingFramesId);
 
                 if(wheelChairAccessBox.isChecked()){
-                    userNeeds.add("Wheelchair Access");
+                    userNeeds.add(1);
                 }
                 if(closeToToiletAccessBox.isChecked()){
-                    userNeeds.add("Close To Toilets Access");
+                    userNeeds.add(2);
                 }
                 if(platformLiftAccessBox.isChecked()){
-                    userNeeds.add("Platform Lift Access");
+                    userNeeds.add(3);
                 }
                 if(parkingSpaceAccessBox.isChecked()){
-                    userNeeds.add("Parking Space Access");
+                    userNeeds.add(4);
                 }
                 if(toiletFrameBox.isChecked()){
-                    userNeeds.add("Toilet Frame Access");
+                    userNeeds.add(5);
                 }
                 if(walkingFrameBox.isChecked()){
-                    userNeeds.add("Walking Frame Access");
+                    userNeeds.add(6);
                 }
 
-                user.setFirstName(firstName.getText().toString());
-                user.setLastName(lastName.getText().toString());
-                user.setEmail(email.getText().toString());
-                user.setNumber(phoneNumber.getText().toString());
-                user.setUserNeeds(userNeeds);
+                person.setFirstName(firstName.getText().toString());
+                person.setLastName(lastName.getText().toString());
+                person.setEmail(email.getText().toString());
+                person.setNumber(phoneNumber.getText().toString());
+                person.setUserNeeds(userNeeds);
 
-                Log.d("Debug: ProfileActivity", user.toString());
+                Log.d("Debug: ProfileActivity", person.toString());
+
+                try {
+                    personModel.addPerson(db, person);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
 
                 openMainActivity();
 
@@ -92,7 +105,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void openMainActivity(){
         Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-        intent.putExtra("USER_OBJECT", (Serializable) user);
+        intent.putExtra("USER_OBJECT", (Serializable) person);
         startActivity(intent);
     }
 }

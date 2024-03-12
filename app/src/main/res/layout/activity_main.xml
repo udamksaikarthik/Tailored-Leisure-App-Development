@@ -2,10 +2,125 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dashboardPageContainer"
+    android:id="@+id/dashboardPageContainerMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/authentication_section_container_id"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_hz_1"
+        app:layout_constraintTop_toTopOf="@id/guideline_hz_0.30">
+
+        <Button
+            android:id="@+id/signup_dashboard_btn_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/app_orange"
+            android:text="SignUp"
+            android:textColor="@color/app_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_dashboard_btn_id" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formComponentOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_comp_vr_0.0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_comp_vr_0.45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.45" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_comp_vr_1.0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="1.0" />
+
+            <TextView
+                android:id="@+id/firstNameId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:padding="10dp"
+                android:text="Email"
+                android:textAlignment="viewStart"
+                android:textColor="@color/app_blue"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_0.45"
+                app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.0"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/loginEmailEditTextId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/roboto"
+                android:hint="Enter Text here..."
+                android:inputType="text"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_comp_vr_1.0"
+                app:layout_constraintStart_toStartOf="@id/guideline_comp_vr_0.45" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:text="Login"
+            android:textAlignment="textEnd"
+            android:textAllCaps="false"
+            android:textColor="@color/app_orange"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/login_dashboard_btn_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/app_orange"
+            android:text="Login"
+            android:textColor="@color/app_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/formComponentOne" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerContainer"
@@ -196,6 +311,7 @@
         android:scrollIndicators="right"
         android:scrollbars="vertical"
         android:verticalScrollbarPosition="right"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hz_1"
         app:layout_constraintEnd_toEndOf="@id/guideline_vr_1"
         app:layout_constraintStart_toStartOf="@id/guideline_vr_0.0"

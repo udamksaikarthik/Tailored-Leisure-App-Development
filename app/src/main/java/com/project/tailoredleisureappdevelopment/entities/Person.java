@@ -1,18 +1,18 @@
-package com.project.tailoredleisureappdevelopment.models;
+package com.project.tailoredleisureappdevelopment.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User implements Serializable {
+public class Person implements Serializable {
 
     private String firstName;
     private String lastName;
     private String email;
     private String number;
 
-    private ArrayList<String> userNeeds = new ArrayList<>();
+    private ArrayList<Integer> userNeeds = new ArrayList<>();
 
-    public User() {
+    public Person() {
 
     }
 
@@ -59,11 +59,11 @@ public class User implements Serializable {
         this.number = number;
     }
 
-    public ArrayList<String> getUserNeeds() {
+    public ArrayList<Integer> getUserNeeds() {
         return userNeeds;
     }
 
-    public void setUserNeeds(ArrayList<String> userNeeds) {
+    public void setUserNeeds(ArrayList<Integer> userNeeds) {
         this.userNeeds = userNeeds;
     }
 }
