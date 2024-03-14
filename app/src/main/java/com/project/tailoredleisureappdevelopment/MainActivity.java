@@ -37,13 +37,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // Helps to resolve NullPointerException on SQL Connection
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         signUpBtn = (Button) findViewById(R.id.signup_dashboard_btn_id);
         loginBtn = (Button) findViewById(R.id.login_dashboard_btn_id);
         personModel = new PersonModel();
         db = new Database();
         buttons_layout_id = (ConstraintLayout) findViewById(R.id.buttons_layout);
         authentication_section_container_id = (ConstraintLayout) findViewById(R.id.authentication_section_container_id);
+        profileBtn = (Button) findViewById(R.id.profileBtn);
+        venuesBtn = (Button) findViewById(R.id.venuesBtn);
+        authenticationFlg = (Boolean) getIntent().getSerializableExtra("AUTHENTICATOR_FLG") != null?
+                (Boolean) getIntent().getSerializableExtra("AUTHENTICATOR_FLG"): false;
+
+
+        Log.d("DEBUG: MainActivity", "authenticationFlg: "+authenticationFlg);
+
+        if(authenticationFlg){
+            buttons_layout_id.setVisibility(View.VISIBLE);
+            authentication_section_container_id.setVisibility(View.GONE);
+            venuesBtn.setEnabled(true);
+        }
+
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,15 +82,12 @@ public class MainActivity extends AppCompatActivity {
                 if(authenticationFlg){
                     buttons_layout_id.setVisibility(View.VISIBLE);
                     authentication_section_container_id.setVisibility(View.GONE);
+                    venuesBtn.setEnabled(true);
                 }else{
 
                 }
             }
         });
-
-        // Helps to resolve NullPointerException on SQL Connection
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
 
         person = null;
 
@@ -84,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("DEBUG: MainActivity", e.getMessage());
         }
 
-        profileBtn = (Button) findViewById(R.id.profileBtn);
-        venuesBtn = (Button) findViewById(R.id.venuesBtn);
 
         if(person !=null){
             if(!person.getUserNeeds().isEmpty()){
@@ -97,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openProfileActivity();
+                    openProfileActivity();
             }
         });
 

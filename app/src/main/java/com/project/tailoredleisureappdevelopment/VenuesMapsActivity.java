@@ -80,11 +80,11 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
 
-        Places.initialize(getApplicationContext(),"AIzaSyAAnchBf4s7Nr-9cU9K3jUiUGvdioi-5ig", Locale.UK);
+        Places.initialize(getApplicationContext(),"AIzaSyAAnchBf4s7Nr-9cU9K3jUiUGvdioi-5ig");
 
         if(Places.isInitialized()){
             Log.d("VenuesMapsActivity", "Initializing the Places.");
-            Places.initialize(getApplicationContext(),"AIzaSyAAnchBf4s7Nr-9cU9K3jUiUGvdioi-5ig", Locale.UK);
+            Places.initialize(getApplicationContext(),"AIzaSyAAnchBf4s7Nr-9cU9K3jUiUGvdioi-5ig");
         }else{
             Log.d("VenuesMapsActivity", "Places are already intialized.");
         }
