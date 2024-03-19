@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Person person;
     private Button venuesBtn;
     private Button profileBtn;
+    private Button editNeedsBtn;
     private Button signUpBtn;
     private Button loginBtn;
     private EditText loginEmail;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
         signUpBtn = (Button) findViewById(R.id.signup_dashboard_btn_id);
         loginBtn = (Button) findViewById(R.id.login_dashboard_btn_id);
+        editNeedsBtn = (Button) findViewById(R.id.editNeedsBtn);
         personModel = new PersonModel();
         db = new Database();
         buttons_layout_id = (ConstraintLayout) findViewById(R.id.buttons_layout);
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         venuesBtn = (Button) findViewById(R.id.venuesBtn);
         authenticationFlg = (Boolean) getIntent().getSerializableExtra("AUTHENTICATOR_FLG") != null?
                 (Boolean) getIntent().getSerializableExtra("AUTHENTICATOR_FLG"): false;
+        editNeedsBtn.setVisibility(View.GONE);
+
+
+
 
 
         Log.d("DEBUG: MainActivity", "authenticationFlg: "+authenticationFlg);
@@ -58,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
             buttons_layout_id.setVisibility(View.VISIBLE);
             authentication_section_container_id.setVisibility(View.GONE);
             venuesBtn.setEnabled(true);
+            Log.d("DEBUG: MainActivity", "PersonModel.personDetails.getRole(): "+PersonModel.personDetails.getRole());
+            if(PersonModel.personDetails.getRole().equals("ROLE_ADMIN")){
+                editNeedsBtn.setVisibility(View.VISIBLE);
+            }else{
+                editNeedsBtn.setVisibility(View.GONE);
+            }
         }
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {

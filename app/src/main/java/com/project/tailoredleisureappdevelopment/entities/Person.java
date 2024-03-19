@@ -12,7 +12,7 @@ public class Person implements Serializable {
     private String number;
     private String role;
 
-    private ArrayList<Integer> userNeeds = new ArrayList<>();
+    private ArrayList<String> userNeeds = new ArrayList<>();
 
     public Person() {
 
@@ -63,13 +63,6 @@ public class Person implements Serializable {
         this.number = number;
     }
 
-    public ArrayList<Integer> getUserNeeds() {
-        return userNeeds;
-    }
-
-    public void setUserNeeds(ArrayList<Integer> userNeeds) {
-        this.userNeeds = userNeeds;
-    }
 
     public int getPerson_id() {
         return person_id;
@@ -85,5 +78,13 @@ public class Person implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public ArrayList<String> getUserNeeds() {
+        return userNeeds;
+    }
+
+    public void setUserNeeds(ArrayList<String> userNeeds) {
+        this.userNeeds = userNeeds;
     }
 }

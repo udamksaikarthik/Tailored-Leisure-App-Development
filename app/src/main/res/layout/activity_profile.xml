@@ -130,77 +130,468 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <CheckBox
-                        android:id="@+id/wheelChairAccessId"
+                        android:id="@+id/userNeedsCheckBox1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="Wheelchair Access"
-                        android:textAlignment="center"
-                        android:textColor="@color/app_blue"
+                        android:text="CheckBox"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/closeToToiletsId"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox22"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <CheckBox
-                        android:id="@+id/closeToToiletsId"
-                        android:layout_width="match_parent"
+                        android:id="@+id/userNeedsCheckBox2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="Close to Toliets Access"
-                        android:textColor="@color/app_blue"
+                        android:text="CheckBox"
+                        android:textAlignment="center"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/platformLiftId"
-                        app:layout_constraintTop_toBottomOf="@+id/wheelChairAccessId" />
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox3"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox21" />
 
                     <CheckBox
-                        android:id="@+id/platformLiftId"
+                        android:id="@+id/userNeedsCheckBox3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="Platform Lift Access"
-                        android:textColor="@color/app_blue"
+                        android:text="CheckBox"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/parkingSpacesId"
-                        app:layout_constraintTop_toBottomOf="@+id/closeToToiletsId" />
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox4"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox2" />
 
                     <CheckBox
-                        android:id="@+id/parkingSpacesId"
+                        android:id="@+id/userNeedsCheckBox4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="Parking Space Access"
-                        android:textColor="@color/app_blue"
+                        android:text="CheckBox"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/toiletFramesId"
-                        app:layout_constraintTop_toBottomOf="@+id/platformLiftId" />
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox5"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox3" />
 
                     <CheckBox
-                        android:id="@+id/toiletFramesId"
+                        android:id="@+id/userNeedsCheckBox5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="Toilet Frames"
-                        android:textColor="@color/app_blue"
+                        android:text="CheckBox"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/walkingFramesId"
-                        app:layout_constraintTop_toBottomOf="@+id/parkingSpacesId" />
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox6"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox4" />
 
                     <CheckBox
-                        android:id="@+id/walkingFramesId"
+                        android:id="@+id/userNeedsCheckBox6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
-                        android:text="Walking Frames"
-                        android:textColor="@color/app_blue"
+                        android:text="CheckBox"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox7"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox5" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/toiletFramesId" />
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox6" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox9"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox50" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox10"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox8" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox11"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox9" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox12"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox10" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox13"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox11" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox14"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox12" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox15"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox13" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox16"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox14" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox17"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox15" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox18"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox16" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox19"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox17" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox20"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox18" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox21"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox19" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox2"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox20" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox23"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox1" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox24"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox22" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox25"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox23" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox26"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox24" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox27"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox25" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox28"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox26" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox29"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox27" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox30"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox28" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox31"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox29" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox32"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox30" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox33"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox31" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox34"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox32" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox35"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox33" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox36"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox34" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox36"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox37"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox35" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox38"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox36" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox39"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox37" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox40"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox38" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox41"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox39" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox42"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox40" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox43"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox41" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox44"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox42" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox45"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox43" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox46"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox44" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox46"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox47"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox45" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox47"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox48"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox46" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox48"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox49"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox47" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox49"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox50"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox48" />
+
+                    <CheckBox
+                        android:id="@+id/userNeedsCheckBox50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="CheckBox"
+                        app:layout_constraintBottom_toTopOf="@+id/userNeedsCheckBox8"
+                        app:layout_constraintTop_toBottomOf="@+id/userNeedsCheckBox49" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

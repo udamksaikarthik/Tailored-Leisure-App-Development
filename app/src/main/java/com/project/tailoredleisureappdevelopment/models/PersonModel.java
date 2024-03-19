@@ -1,10 +1,14 @@
 package com.project.tailoredleisureappdevelopment.models;
 
+import android.content.Intent;
 import android.util.Log;
 
+import com.project.tailoredleisureappdevelopment.MainActivity;
+import com.project.tailoredleisureappdevelopment.ProfileActivity;
 import com.project.tailoredleisureappdevelopment.entities.Need;
 import com.project.tailoredleisureappdevelopment.entities.Person;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,14 +19,12 @@ public class PersonModel {
 
     public static Person personDetails;
 
-    public static ArrayList<Integer> needIds;
+    public static ArrayList<String> needIds;
     private ArrayList<Integer> needIdsDup;
 
     private Person personObj;
 
-    public Need need;
-
-    Connection conn;
+    private Connection conn;
 
     public void addPerson(Database db, Person person) throws SQLException {
         int person_id = 0;
@@ -31,17 +33,28 @@ public class PersonModel {
         String addPersonQuery = "INSERT INTO PERSON (first_name, last_name, email, number) VALUES ('"+ person.getFirstName()+"', '"+ person.getLastName()+"', '"+ person.getEmail()+"', '"+ person.getNumber()+"')";
         Log.d("DEBUG: PersonModel", "addPersonQuery: "+addPersonQuery);
         Statement stmt = null;
+        Statement stmt1 = null;
+        Statement stmt2 = null;
         try {
             stmt = conn.createStatement();
+            stmt1 = conn.createStatement();
+            stmt2 = conn.createStatement();
             stmt.executeUpdate(addPersonQuery);
             ResultSet rs = stmt.executeQuery("SELECT PERSON_ID FROM PERSON WHERE FIRST_NAME = '"+ person.getFirstName().trim()+"' AND LAST_NAME = '"+person.getLastName().trim()+"'");
+
             while(rs.next()){
                 person_id = rs.getInt(1);
             }
             for(int i=0; i<person.getUserNeeds().size();i++){
-                String addPersonNeedQuery = "INSERT INTO PERSON_NEED (person_id, need_id) VALUES ('"+ person_id +"', '"+ person.getUserNeeds().get(i) +"')";
-                Log.d("DEBUG: PersonModel", "addPersonNeedQuery: "+addPersonNeedQuery);
-                stmt.executeUpdate(addPersonNeedQuery);
+                String getNeedIdQuery = "SELECT NEED_ID FROM NEED WHERE NEED_SHORT_DESC = '"+ person.getUserNeeds().get(i) +"'";
+                Log.d("DEBUG: PersonModel", "getNeedIdQuery: "+getNeedIdQuery);
+                rs = stmt1.executeQuery(getNeedIdQuery);
+                while(rs.next()){
+                    String addPersonNeedQuery = "INSERT INTO PERSON_NEED (person_id, need_id) VALUES ('"+ person_id +"', '"+ rs.getInt("need_id") +"')";
+
+                    Log.d("DEBUG: PersonModel", "addPersonNeedQuery: "+addPersonNeedQuery);
+                    stmt2.executeUpdate(addPersonNeedQuery);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,7 +107,15 @@ public class PersonModel {
                 needIdsDup.add(rs.getInt(1));
             }
             Log.d("DEBUG: PersonModel", "needIdsDup: "+needIdsDup);
-            needIds = needIdsDup;
+            for(int i=0;i<needIdsDup.size();i++){
+                String Query3 = "SELECT NEED_SHORT_DESC FROM NEED WHERE NEED_ID = "+needIdsDup.get(i);
+                Log.d("DEBUG: PersonModel", "Query3: "+Query3);
+                rs = stmt.executeQuery(Query3);
+                while (rs.next()){
+                    Log.d("DEBUG: PersonModel", "RESULT SET NEED SHORT DESC: "+rs.getString("NEED_SHORT_DESC"));
+                    needIds.add(rs.getString("NEED_SHORT_DESC"));
+                }
+            }
             Log.d("DEBUG: PersonModel", "needIds: "+needIds);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -111,14 +132,22 @@ public class PersonModel {
         String updatePersonQuery = "UPDATE PERSON SET first_name = '"+ person.getFirstName()+"', last_name = '"+ person.getLastName()+"', email = '"+ person.getEmail()+"', number = '"+ person.getNumber()+"' WHERE PERSON_ID = "+person.getPerson_id();
         Log.d("DEBUG: PersonModel", "updatePersonQuery: "+updatePersonQuery);
         Statement stmt = null;
+        Statement stmt1 = null;
         try {
             stmt = conn.createStatement();
+            stmt1 = conn.createStatement();
             stmt.executeUpdate(updatePersonQuery);
             stmt.executeUpdate("DELETE FROM PERSON_NEED WHERE PERSON_ID = "+person.getPerson_id());
             for(int i=0; i<person.getUserNeeds().size();i++){
-                String addPersonNeedQuery = "INSERT INTO PERSON_NEED (person_id, need_id) VALUES ('"+ person.getPerson_id() +"', '"+ person.getUserNeeds().get(i) +"')";
-                Log.d("DEBUG: PersonModel", "addPersonNeedQuery: "+addPersonNeedQuery);
-                stmt.executeUpdate(addPersonNeedQuery);
+                String getNeedIdQuery = "SELECT NEED_ID FROM NEED WHERE NEED_SHORT_DESC = '"+ person.getUserNeeds().get(i) +"'";
+                Log.d("DEBUG: PersonModel", "getNeedId: "+getNeedIdQuery);
+                ResultSet rs = stmt1.executeQuery(getNeedIdQuery);
+                while(rs.next()){
+                    int getNeedId = rs.getInt("need_id");
+                    String addPersonNeedQuery = "INSERT INTO PERSON_NEED (person_id, need_id) VALUES ('"+ person.getPerson_id() +"', '"+ getNeedId +"')";
+                    Log.d("DEBUG: PersonModel", "addPersonNeedQuery: "+addPersonNeedQuery);
+                    stmt.executeUpdate(addPersonNeedQuery);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -154,7 +183,15 @@ public class PersonModel {
                 needIdsDup.add(rs.getInt(1));
             }
             Log.d("DEBUG: PersonModel", "needIdsDup: "+needIdsDup);
-            needIds = needIdsDup;
+            for(int i=0;i<needIdsDup.size();i++){
+                String Query3 = "SELECT NEED_SHORT_DESC FROM NEED WHERE NEED_ID = "+needIdsDup.get(i);
+                Log.d("DEBUG: PersonModel", "Query3: "+Query3);
+                rs = stmt.executeQuery(Query3);
+                while (rs.next()){
+                    Log.d("DEBUG: PersonModel", "RESULT SET NEED SHORT DESC: "+rs.getString("NEED_SHORT_DESC"));
+                    needIds.add(rs.getString("NEED_SHORT_DESC"));
+                }
+            }
             Log.d("DEBUG: PersonModel", "needIds: "+needIds);
         } catch (SQLException e) {
             System.out.println(e.getMessage());

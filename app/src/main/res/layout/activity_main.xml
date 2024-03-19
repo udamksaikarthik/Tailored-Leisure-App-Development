@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,10 +9,119 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tagLineContainer">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttons_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:scrollIndicators="right"
+            android:scrollbars="vertical"
+            android:verticalScrollbarPosition="right"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/profileBtn"
+                android:layout_width="329dp"
+                android:layout_height="165dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/app_orange"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="PROFILE"
+                android:textColor="@color/app_blue"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/venuesBtn"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_btn_vr_0.9"
+                app:layout_constraintStart_toStartOf="@+id/guideline_btn_vr_0.10"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/venuesBtn"
+                android:layout_width="329dp"
+                android:layout_height="164dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/app_orange"
+                android:clickable="false"
+                android:enabled="false"
+                android:fontFamily="@font/roboto"
+                android:text="VENUES"
+                android:textColor="@color/app_blue"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/editNeedsBtn"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_btn_vr_0.9"
+                app:layout_constraintStart_toStartOf="@+id/guideline_btn_vr_0.10"
+                app:layout_constraintTop_toBottomOf="@+id/profileBtn" />
+
+            <Button
+                android:id="@+id/eventsBtn"
+                android:layout_width="329dp"
+                android:layout_height="165dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/app_orange"
+                android:enabled="false"
+                android:fontFamily="@font/roboto"
+                android:text="Events"
+                android:textColor="@color/app_blue"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_btn_vr_0.9"
+                app:layout_constraintStart_toStartOf="@+id/guideline_btn_vr_0.10"
+                app:layout_constraintTop_toBottomOf="@+id/editNeedsBtn" />
+
+            <Button
+                android:id="@+id/editNeedsBtn"
+                android:layout_width="329dp"
+                android:layout_height="165dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/app_orange"
+                android:enabled="false"
+                android:fontFamily="@font/roboto"
+                android:text="Edit Needs"
+                android:textColor="@color/app_blue"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/eventsBtn"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_btn_vr_0.9"
+                app:layout_constraintStart_toStartOf="@+id/guideline_btn_vr_0.10"
+                app:layout_constraintTop_toBottomOf="@+id/venuesBtn" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_btn_vr_0.10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_btn_vr_0.9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/authentication_section_container_id"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/guideline_hz_1"
         app:layout_constraintTop_toTopOf="@id/guideline_hz_0.30">
 
@@ -293,7 +404,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto"
-                android:text="with disabilities and long term conditions."
+                android:text="disabilities and long term conditions."
                 android:textAlignment="center"
                 android:textColor="@color/app_blue"
                 android:textSize="20sp"
@@ -302,91 +413,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/buttons_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:scrollIndicators="right"
-        android:scrollbars="vertical"
-        android:verticalScrollbarPosition="right"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_hz_1"
-        app:layout_constraintEnd_toEndOf="@id/guideline_vr_1"
-        app:layout_constraintStart_toStartOf="@id/guideline_vr_0.0"
-        app:layout_constraintTop_toTopOf="@id/guideline_hz_0.30">
-
-        <Button
-            android:id="@+id/profileBtn"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/app_orange"
-            android:fontFamily="@font/roboto"
-            android:gravity="center"
-            android:text="PROFILE"
-            android:textColor="@color/app_blue"
-            android:textSize="38sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/venuesBtn"
-            app:layout_constraintDimensionRatio="1:0.5"
-            app:layout_constraintEnd_toEndOf="@id/guideline_btn_vr_0.9"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/guideline_btn_vr_0.10"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/venuesBtn"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/app_orange"
-            android:clickable="false"
-            android:enabled="false"
-            android:fontFamily="@font/roboto"
-            android:text="VENUES"
-            android:textColor="@color/app_blue"
-            android:textSize="38sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/eventsBtn"
-            app:layout_constraintDimensionRatio="1:0.5"
-            app:layout_constraintEnd_toEndOf="@id/guideline_btn_vr_0.9"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/guideline_btn_vr_0.10"
-            app:layout_constraintTop_toBottomOf="@+id/profileBtn" />
-
-        <Button
-            android:id="@+id/eventsBtn"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/app_orange"
-            android:enabled="false"
-            android:fontFamily="@font/roboto"
-            android:text="Events"
-            android:textColor="@color/app_blue"
-            android:textSize="38sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:0.5"
-            app:layout_constraintEnd_toEndOf="@id/guideline_btn_vr_0.9"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/guideline_btn_vr_0.10"
-            app:layout_constraintTop_toBottomOf="@+id/venuesBtn" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_btn_vr_0.10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_btn_vr_0.9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.9" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hz_0.0"

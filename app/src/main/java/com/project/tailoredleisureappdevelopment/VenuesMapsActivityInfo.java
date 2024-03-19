@@ -50,7 +50,7 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         venueName.setText(placeObj.getName());
         venueWebsite.setText(placeObj.getWebsiteUri().toString());
         venuePhone.setText(placeObj.getPhoneNumber());
-        venueGoogleRating.setText(placeObj.getUserRatingsTotal().toString());
+        venueGoogleRating.setText(placeObj.getRating().toString() +"(" +placeObj.getUserRatingsTotal().toString()+")");
 
         bookBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
