@@ -18,6 +18,12 @@
         android:theme="@style/Theme.TailoredLeisureAppDevelopment"
         tools:targetApi="31">
         <activity
+            android:name=".ReviewAndRatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditNeedsActivity"
+            android:exported="false" />
+        <activity
             android:name=".VenuesMapsActivityInfo"
             android:exported="false" />
         <activity

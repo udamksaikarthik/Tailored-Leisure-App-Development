@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("DEBUG: MainActivity", "PersonModel.personDetails.getRole(): "+PersonModel.personDetails.getRole());
             if(PersonModel.personDetails.getRole().equals("ROLE_ADMIN")){
                 editNeedsBtn.setVisibility(View.VISIBLE);
+                editNeedsBtn.setEnabled(true);
             }else{
                 editNeedsBtn.setVisibility(View.GONE);
             }
@@ -95,11 +96,19 @@ public class MainActivity extends AppCompatActivity {
                     buttons_layout_id.setVisibility(View.VISIBLE);
                     authentication_section_container_id.setVisibility(View.GONE);
                     venuesBtn.setEnabled(true);
+                    Log.d("DEBUG: MainActivity", "PersonModel.personDetails.getRole(): "+PersonModel.personDetails.getRole());
+                    if(PersonModel.personDetails.getRole().equals("ROLE_ADMIN")){
+                        editNeedsBtn.setVisibility(View.VISIBLE);
+                        editNeedsBtn.setEnabled(true);
+                    }else{
+                        editNeedsBtn.setVisibility(View.GONE);
+                    }
                 }else{
 
                 }
             }
         });
+
 
         person = null;
 
@@ -120,16 +129,33 @@ public class MainActivity extends AppCompatActivity {
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    openProfileActivity();
+
+                Log.d("DEBUG: MainActivity","Profile Button Clicked.");
+                openProfileActivity();
             }
         });
 
         venuesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("DEBUG: MainActivity","Venues Button Clicked.");
                 openVenuesActivity();
             }
         });
+
+
+        editNeedsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("DEBUG: MainActivity","Edit Needs Button Clicked.");
+                openEditNeedsActivity();
+            }
+        });
+    }
+
+    private void openEditNeedsActivity() {
+        Intent intent = new Intent(this, EditNeedsActivity.class);
+        startActivity(intent);
     }
 
     public void openProfileActivity(){

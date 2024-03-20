@@ -1,7 +1,6 @@
 package com.project.tailoredleisureappdevelopment.models;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.project.tailoredleisureappdevelopment.entities.Need;
 
@@ -32,10 +31,6 @@ public class NeedModel {
 
         Log.d("DEBUG: Database", "addPersonQuery Successful.");
         db.closeConnection(conn);
-    }
-
-    public void deleteNeed(Database db, int need_id) throws SQLException{
-
     }
 
     public void updateNeed(Database db, Need n) throws SQLException{
@@ -71,4 +66,33 @@ public class NeedModel {
     }
 
 
+    public void deleteNeeds(Database db, ArrayList<String> userNeeds) throws SQLException {
+        conn = db.getConnection();
+        Log.d("DEBUG: NeedModel", "Inside deleteNeeds method.");
+        Statement stmt = null;
+        Statement stmt1 = null;
+        Statement stmt2 = null;
+        try {
+            stmt = conn.createStatement();
+            stmt1 = conn.createStatement();
+            stmt2 = conn.createStatement();
+        for(int i=0; i<userNeeds.size(); i++){
+            String getNeedIdQuery = "SELECT NEED_ID FROM NEED WHERE NEED_SHORT_DESC = '"+userNeeds.get(i).trim()+"'";
+            Log.d("DEBUG: NeedModel", "getNeedIdQuery: "+getNeedIdQuery);
+            ResultSet rs = stmt.executeQuery(getNeedIdQuery);
+            while (rs.next()){
+                String deletQueryPersonNeed = "DELETE FROM PERSON_NEED WHERE NEED_ID = '"+rs.getInt("NEED_ID")+"'";
+                Log.d("DEBUG: NeedModel", "deletQueryPersonNeed: "+deletQueryPersonNeed);
+                stmt1.executeUpdate(deletQueryPersonNeed);
+                String deleteNeedQuery = "DELETE FROM NEED WHERE NEED_ID = '"+rs.getInt("NEED_ID")+"'";
+                Log.d("DEBUG: NeedModel", "deleteNeedQuery: "+deleteNeedQuery);
+                stmt2.executeUpdate(deleteNeedQuery);
+            }
+        }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+        db.closeConnection(conn);
+    }
 }

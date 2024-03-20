@@ -64,11 +64,16 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         reviewVenueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openReviewAndRatingActivity();
             }
         });
 
 
+    }
+
+    private void openReviewAndRatingActivity() {
+        Intent intent = new Intent(VenuesMapsActivityInfo.this, ReviewAndRatingActivity.class);
+        startActivity(intent);
     }
 
 
