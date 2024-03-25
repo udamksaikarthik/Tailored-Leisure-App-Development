@@ -10,10 +10,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hr_90"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/scrollView2"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <RatingBar
             android:id="@+id/userRatingBarId"
@@ -38,13 +38,14 @@
             tools:layout_editor_absoluteX="1dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userReviewEditTxtId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Write your review here..." />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/submitUserReviewId"
+            android:id="@+id/submitUserReviewBtnId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit Review"
@@ -64,14 +65,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline_vr_0.0"
         app:layout_constraintTop_toTopOf="@+id/guideline_hr_90" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <ListView
+        android:id="@+id/usersReviewsPlaceListViewId"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:divider="@color/black"
+        android:dividerHeight="2dp"
+        android:listSelector="@color/app_orange"
+        tools:layout_editor_absoluteY="149dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_hr_90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_hz_0.20" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
     <TextView
         android:id="@+id/textView"

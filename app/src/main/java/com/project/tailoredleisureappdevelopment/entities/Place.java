@@ -9,6 +9,7 @@ public class Place implements Serializable{
     private String phoneNumber;
     private Integer userRatingsTotal;
     private String websiteUri;
+    private String placeId;
 
     public Place() {
 
@@ -60,5 +61,13 @@ public class Place implements Serializable{
 
     public void setWebsiteUri(String websiteUri) {
         this.websiteUri = websiteUri;
+    }
+
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
     }
 }

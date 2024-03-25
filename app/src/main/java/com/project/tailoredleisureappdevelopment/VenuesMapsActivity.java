@@ -93,7 +93,7 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME, Place.Field.PHONE_NUMBER, Place.Field.WEBSITE_URI, Place.Field.RATING, Place.Field.USER_RATINGS_TOTAL);
+                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME, Place.Field.PHONE_NUMBER, Place.Field.WEBSITE_URI, Place.Field.RATING, Place.Field.USER_RATINGS_TOTAL, Place.Field.ID);
 
                 Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY
                         , fieldList).build(VenuesMapsActivity.this);
@@ -170,6 +170,7 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
             placeObj.setUserRatingsTotal(place.getUserRatingsTotal());
             placeObj.setPhoneNumber(place.getPhoneNumber());
             editText.setText(place.getAddress());
+            placeObj.setPlaceId(place.getId());
             LatLng LatLng = new LatLng(latitude, longitude);
             gMap.addMarker(new MarkerOptions().position(LatLng).title(place.getAddress()));
             gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng, 10));

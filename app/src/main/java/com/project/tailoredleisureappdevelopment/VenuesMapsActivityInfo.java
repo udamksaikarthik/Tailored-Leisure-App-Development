@@ -3,13 +3,24 @@ package com.project.tailoredleisureappdevelopment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.project.tailoredleisureappdevelopment.entities.Person;
 import com.project.tailoredleisureappdevelopment.entities.Place;
+import com.project.tailoredleisureappdevelopment.models.Database;
+import com.project.tailoredleisureappdevelopment.models.NeedModel;
+import com.project.tailoredleisureappdevelopment.models.PersonModel;
+import com.project.tailoredleisureappdevelopment.models.ReviewModel;
+
+import java.io.Serializable;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 
 public class VenuesMapsActivityInfo extends AppCompatActivity {
@@ -24,6 +35,10 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
     private EditText venueTailoredRating;
     private Button bookBtn;
     private Button reviewVenueBtn;
+    private ReviewModel reviewModel;
+    private Database db;
+    private EditText venueOverallTLRatingEditTxtId;
+    private EditText venueTailoredRatingEditTxtId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +54,10 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         venueTailoredRating = (EditText) findViewById(R.id.venueTailoredRatingEditTxtId);
         bookBtn = (Button) findViewById(R.id.bookVenueBtn);
         reviewVenueBtn = (Button) findViewById(R.id.reviewVenueBtn);
+        venueOverallTLRatingEditTxtId = (EditText) findViewById(R.id.venueOverallTLRatingEditTxtId);
+        venueTailoredRatingEditTxtId = (EditText) findViewById(R.id.venueTailoredRatingEditTxtId);
+        reviewModel = new ReviewModel();
+        db = new Database();
 
         venueName.setFocusable(false);
         venueWebsite.setFocusable(false);
@@ -46,11 +65,51 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         venueGoogleRating.setFocusable(false);
         venueOverallTailoredRating.setFocusable(false);
         venueTailoredRating.setFocusable(false);
+        DecimalFormat df = new DecimalFormat("#.0");
 
         venueName.setText(placeObj.getName());
         venueWebsite.setText(placeObj.getWebsiteUri().toString());
         venuePhone.setText(placeObj.getPhoneNumber());
-        venueGoogleRating.setText(placeObj.getRating().toString() +"(" +placeObj.getUserRatingsTotal().toString()+")");
+        venueGoogleRating.setText(placeObj.getRating().toString() +" (" +placeObj.getUserRatingsTotal().toString()+")");
+
+        try {
+            ArrayList<Float> overallTailoredLeisureRatingList = reviewModel.getOverallTailoredLeisureRating(db, placeObj.getPlaceId().trim());
+            if(!overallTailoredLeisureRatingList.isEmpty()){
+                Float avg = 0.0f;
+                int countUsers = 0;
+                for(int i=0; i<overallTailoredLeisureRatingList.size(); i++){
+                    avg = avg + overallTailoredLeisureRatingList.get(i);
+                    countUsers++;
+                }
+                Float overallTailoredLeisureRating= avg/countUsers;
+                venueOverallTLRatingEditTxtId.setText(df.format(overallTailoredLeisureRating)+" ("+countUsers+")");
+
+            }else{
+                venueOverallTLRatingEditTxtId.setText("No Ratings.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try
+        {
+            ArrayList<Float> TailoredLeisureRatingList = reviewModel.getTailoredLeisureRating(db, placeObj.getPlaceId().trim(), PersonModel.needIds);
+            if(!TailoredLeisureRatingList.isEmpty()){
+                Float avg = 0.0f;
+                int countUsers = 0;
+                for(int i=0; i<TailoredLeisureRatingList.size(); i++){
+                    avg = avg + TailoredLeisureRatingList.get(i);
+                    countUsers++;
+                }
+                Float TailoredLeisureRating= avg/countUsers;
+                venueTailoredRatingEditTxtId.setText(df.format(TailoredLeisureRating)+" ("+countUsers+")");
+
+            }else{
+                venueTailoredRatingEditTxtId.setText("No Ratings.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
 
         bookBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -64,6 +123,7 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         reviewVenueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("DEBUG: VenuesMapsActivityInfo","Place Id: "+placeObj.getPlaceId().trim());
                 openReviewAndRatingActivity();
             }
         });
@@ -73,6 +133,7 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
 
     private void openReviewAndRatingActivity() {
         Intent intent = new Intent(VenuesMapsActivityInfo.this, ReviewAndRatingActivity.class);
+        intent.putExtra("PLACE_OBJECT", (Serializable) placeObj);
         startActivity(intent);
     }
 

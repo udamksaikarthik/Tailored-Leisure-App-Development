@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TailoredLeisureAppDevelopment"
         tools:targetApi="31">
         <activity
+            android:name=".ListViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReviewAndRatingActivity"
             android:exported="false" />
         <activity
@@ -31,8 +34,8 @@
             android:exported="false" />
         <activity
             android:name=".VenuesMapsActivity"
-            android:hardwareAccelerated="true"
-            android:exported="false" />
+            android:exported="false"
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
