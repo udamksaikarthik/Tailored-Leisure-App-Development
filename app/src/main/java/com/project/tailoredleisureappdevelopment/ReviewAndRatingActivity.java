@@ -1,14 +1,20 @@
 package com.project.tailoredleisureappdevelopment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.Rating;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
@@ -23,8 +29,10 @@ import com.project.tailoredleisureappdevelopment.models.Database;
 import com.project.tailoredleisureappdevelopment.models.PersonModel;
 import com.project.tailoredleisureappdevelopment.models.ReviewModel;
 
+import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 
 public class ReviewAndRatingActivity extends AppCompatActivity {
@@ -40,6 +48,8 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
     private Database db;
     private ArrayList<Review> reviewsList;
     private ListView usersReviewsPlaceListViewId;
+    private Button addImageBtnId;
+    private ImageView imageView;
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,8 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
         reviewModel = new ReviewModel();
         reviewsList = new ArrayList<>();
         db = new Database();
+        addImageBtnId = (Button) findViewById(R.id.addImageBtnId);
+        imageView = (ImageView) findViewById(R.id.imageView);
 
         try {
             if(reviewModel.checkIfUserReviewed(db, placeObj.getPlaceId().trim(),personId)){
@@ -69,10 +81,10 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
                 reviewsToStringList.add(r.toString());
             }
             // on the below line we are initializing the adapter for our list view.
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.activity_list_view, R.id.listViewReviewTextId, reviewsToStringList);
+            ReviewAdapter reviewAdapter = new ReviewAdapter(this, R.layout.activity_list_view, reviewsList);
 
             // on below line we are setting adapter for our list view.
-            usersReviewsPlaceListViewId.setAdapter(adapter);
+            usersReviewsPlaceListViewId.setAdapter(reviewAdapter);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -87,6 +99,14 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
                 rateTheVenueBtnId.setVisibility(View.GONE);
                 userRatingBarId = (RatingBar) findViewById(R.id.userRatingBarId);
                 userReviewEditTxtId = (EditText) findViewById(R.id.userReviewEditTxtId);
+
+                addImageBtnId.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, 3);
+                    }
+                });
 
                 if(BtnText.equals("Edit Review")){
                     submitUserReviewBtnId.setText("Update Review");
@@ -115,6 +135,17 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
                 String BtnText = submitUserReviewBtnId.getText().toString().trim();
                 String userReview = userReviewEditTxtId.getText().toString();
                 Float userRating = userRatingBarId.getRating();
+                imageView = (ImageView) findViewById(R.id.imageView);
+                Bitmap bitmap=(Bitmap)imageView.getDrawingCache();
+                byte[] imageByte = new byte[0];
+                if(bitmap!=null){
+                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+                    imageByte = byteArray.toByteArray();
+                }else{
+
+                }
+
                 Log.d("DEBUG: ReviewAndRatingActivity","userReview: "+userReview);
                 Log.d("DEBUG: ReviewAndRatingActivity","userRating: "+userRating);
                 Log.d("DEBUG: ReviewAndRatingActivity","placeId: "+placeObj.getPlaceId());
@@ -125,13 +156,13 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
                 if(BtnText.equals("Update Review")){
                     ArrayList<Object> reviewDetails = new ArrayList<>();
                     try {
-                        reviewModel.editReview(db, userRating ,userReview, placeObj.getPlaceId(), personId);
+                        reviewModel.editReview(db, userRating ,userReview, placeObj.getPlaceId(), personId, imageByte);
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                 }else{
                     try {
-                        reviewModel.addReview(db, userReview, userRating, placeObj.getPlaceId(), placeObj.getName(), personId, personName);
+                        reviewModel.addReview(db, userReview, userRating, placeObj.getPlaceId(), placeObj.getName(), personId, personName, imageByte);
                         rateTheVenueBtnId.setText("Edit Review");
                         submitUserReviewBtnId.setText("Update Review");
                     } catch (SQLException e) {
@@ -146,5 +177,14 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
             }
         });
+    }
+
+    public void onActivityResult(int RequestCode, int resultCode, Intent data) {
+        super.onActivityResult(RequestCode, resultCode, data);
+        if(resultCode==RESULT_OK & data!=null){
+            Uri selectedImage = data.getData();
+            imageView = (ImageView) findViewById(R.id.imageView);
+            imageView.setImageURI(selectedImage);
+        }
     }
 }

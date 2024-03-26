@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -103,8 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         editNeedsBtn.setVisibility(View.GONE);
                     }
+                    Toast.makeText(getApplicationContext(), "Logged In Successfully.", Toast.LENGTH_SHORT).show();
                 }else{
-
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -129,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Log.d("DEBUG: MainActivity","Profile Button Clicked.");
                 openProfileActivity();
             }

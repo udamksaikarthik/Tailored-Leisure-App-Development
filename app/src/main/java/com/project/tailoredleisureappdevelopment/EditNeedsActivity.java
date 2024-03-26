@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -106,6 +107,7 @@ public class EditNeedsActivity extends AppCompatActivity {
                 if(!userNeeds.isEmpty()){
                     try {
                         needModel.deleteNeeds(db, userNeeds);
+                        Toast.makeText(getApplicationContext(), "Need Deleted Successfully.", Toast.LENGTH_SHORT).show();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -140,6 +142,7 @@ public class EditNeedsActivity extends AppCompatActivity {
                     n.setNeed_long_desc(need_long_desc);
                     try {
                         needModel.addNeed(db, n);
+                        Toast.makeText(getApplicationContext(), "Need Added Successfully.", Toast.LENGTH_SHORT).show();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

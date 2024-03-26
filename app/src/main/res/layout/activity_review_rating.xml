@@ -9,8 +9,10 @@
         android:id="@+id/rateTheVenueViewId"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:isScrollContainer="false"
+        android:nestedScrollingEnabled="false"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_hr_90"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -20,12 +22,12 @@
             style="@style/star_butterfly_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:maxHeight="60dp"
             android:minHeight="60dp"
             android:numStars="5"
             android:rating="3"
             android:stepSize="1.0"
+            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,8 +36,9 @@
             android:id="@+id/textInputLayout"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/userRatingBarId"
-            tools:layout_editor_absoluteX="1dp">
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userRatingBarId">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/userReviewEditTxtId"
@@ -43,6 +46,25 @@
                 android:layout_height="wrap_content"
                 android:hint="Write your review here..." />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintBottom_toTopOf="@+id/addImageBtnId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+        <Button
+            android:id="@+id/addImageBtnId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Image"
+            app:layout_constraintBottom_toTopOf="@+id/submitUserReviewBtnId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
             android:id="@+id/submitUserReviewBtnId"
@@ -52,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/addImageBtnId" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -72,11 +94,11 @@
         android:divider="@color/black"
         android:dividerHeight="2dp"
         android:listSelector="@color/app_orange"
-        tools:layout_editor_absoluteY="149dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/guideline_hr_90"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"

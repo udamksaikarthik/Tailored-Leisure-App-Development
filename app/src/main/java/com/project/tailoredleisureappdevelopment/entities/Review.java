@@ -1,5 +1,6 @@
 package com.project.tailoredleisureappdevelopment.entities;
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class Review {
@@ -13,6 +14,7 @@ public class Review {
     private String review;
     private String placeName;
     private String personName;
+    private byte[] userImage;
 
     public Review(){
 
@@ -24,8 +26,16 @@ public class Review {
                 "\nRating: " + rating+
                 "\nReviewed Date: " + reviewedDate +
                 "\nApproved: " + approved +
-                "\nReview: '" + review + "'."
+                "\nReview: '" + review +"'."
                 ;
+    }
+
+    public byte[] getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(byte[] userImage) {
+        this.userImage = userImage;
     }
 
     public int getReviewId() {

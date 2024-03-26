@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.project.tailoredleisureappdevelopment.entities.Need;
 import com.project.tailoredleisureappdevelopment.entities.Person;
@@ -157,6 +158,7 @@ public class ProfileActivity extends AppCompatActivity {
                     try {
                         person.setPerson_id(personDetails.getPerson_id());
                         personModel.updatePerson(db, person);
+                        Toast.makeText(getApplicationContext(), "Profile Updated Successfully.", Toast.LENGTH_SHORT).show();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
@@ -167,13 +169,12 @@ public class ProfileActivity extends AppCompatActivity {
                     Log.d("Debug: ProfileActivity", person.toString());
                     try {
                         personModel.addPerson(db, person);
+                        Toast.makeText(getApplicationContext(), "Profile Created Successfully.", Toast.LENGTH_SHORT).show();
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                     openMainActivity(false);
                 }
-
-
             }
         });
     }

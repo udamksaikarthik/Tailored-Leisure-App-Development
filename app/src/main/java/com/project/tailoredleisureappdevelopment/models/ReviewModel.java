@@ -1,13 +1,50 @@
 package com.project.tailoredleisureappdevelopment.models;
 
 
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.IntentSender;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.database.DatabaseErrorHandler;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.UserHandle;
 import android.util.Log;
+import android.view.Display;
+import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.project.tailoredleisureappdevelopment.ReviewAndRatingActivity;
 import com.project.tailoredleisureappdevelopment.entities.Review;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,11 +56,11 @@ public class ReviewModel {
     private Connection conn;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void addReview(Database db, String userReview, Float userRating, String placeId, String placeName, int personId, String personName) throws SQLException {
+    public void addReview(Database db, String userReview, Float userRating, String placeId, String placeName, int personId, String personName, byte[] imageByte) throws SQLException {
         LocalDate currentDate = LocalDate.now();
         conn = db.getConnection();
         Log.d("DEBUG: ReviewModel", "Inside addReview method.");
-        String addReviewQuery = "INSERT INTO REVIEW (place_id, person_id, rating, review, place_name, reviewed_date, person_name) VALUES ('"+placeId.trim()+"', '"+personId+"', '"+userRating+"', '"+userReview.trim()+"', '"+placeName.trim()+"', '"+currentDate+"','"+personName+"')";
+        String addReviewQuery = "INSERT INTO REVIEW (place_id, person_id, rating, review, place_name, reviewed_date, person_name, user_image) VALUES ('"+placeId.trim()+"', '"+personId+"', '"+userRating+"', '"+userReview.trim()+"', '"+placeName.trim()+"', '"+currentDate+"','"+personName+"', '"+imageByte+"')";
         Log.d("DEBUG: ReviewModel", "addReviewQuery: "+addReviewQuery);
         Statement stmt = null;
         try {
@@ -87,9 +124,9 @@ public class ReviewModel {
     }
 
 
-    public void editReview(Database db, Float userRating, String userReview, String placeId, int personId) throws SQLException{
+    public void editReview(Database db, Float userRating, String userReview, String placeId, int personId, byte[] imageByte) throws SQLException{
         conn = db.getConnection();
-        String editReviewQuery = "UPDATE REVIEW SET RATING = '"+userRating+"', REVIEW = '"+userReview+"' WHERE PLACE_ID = '"+placeId.trim()+"' AND PERSON_ID = '"+personId+"'";
+        String editReviewQuery = "UPDATE REVIEW SET RATING = '"+userRating+"', REVIEW = '"+userReview+"', USER_IMAGE = '"+imageByte+"' WHERE PLACE_ID = '"+placeId.trim()+"' AND PERSON_ID = '"+personId+"'";
         Log.d("DEBUG: ReviewModel", "editReviewQuery: "+editReviewQuery);
         Statement stmt = null;
         try {
@@ -122,6 +159,7 @@ public class ReviewModel {
                 r.setPersonName(rs.getString("PERSON_NAME"));
                 r.setRating(rs.getFloat("RATING"));
                 r.setPlaceName(rs.getString("PLACE_NAME"));
+                r.setUserImage(rs.getBytes("USER_IMAGE"));
                 Log.d("DEBUG: ReviewModel", "User Review: "+r.toString());
                 reviewList.add(r);
             }
@@ -131,6 +169,26 @@ public class ReviewModel {
         }
         db.closeConnection(conn);
         return reviewList;
+    }
+
+    // Helper method to convert byte array to hexadecimal string
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+
+    // Helper method to convert hexadecimal string to byte array
+    private byte[] hexToBytes(String hexString) {
+        int len = hexString.length();
+        byte[] byteArray = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            byteArray[i / 2] = (byte) ((Character.digit(hexString.charAt(i), 16) << 4)
+                    + Character.digit(hexString.charAt(i + 1), 16));
+        }
+        return byteArray;
     }
 
     public ArrayList<Float> getOverallTailoredLeisureRating(Database db, String placeId) throws SQLException{
@@ -175,4 +233,5 @@ public class ReviewModel {
         db.closeConnection(conn);
         return getOverallTailoredLeisureRatingList;
     }
+
 }
