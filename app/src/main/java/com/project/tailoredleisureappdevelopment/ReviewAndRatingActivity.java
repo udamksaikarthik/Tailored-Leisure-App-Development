@@ -136,12 +136,20 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
                 String userReview = userReviewEditTxtId.getText().toString();
                 Float userRating = userRatingBarId.getRating();
                 imageView = (ImageView) findViewById(R.id.imageView);
-                Bitmap bitmap=(Bitmap)imageView.getDrawingCache();
+                Bitmap bitmap=((BitmapDrawable)imageView.getDrawable()).getBitmap();
                 byte[] imageByte = new byte[0];
                 if(bitmap!=null){
+                    Log.d("DEBUG: ReviewAndRatingActivity","bitmap: "+bitmap);
                     ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
                     imageByte = byteArray.toByteArray();
+                    Log.d("DEBUG: ReviewAndRatingActivity","imageByte: "+imageByte);
+//                    String imageByteString = "";
+//                    // Iterate over the byte array and print each element
+//                    for (byte b : imageByte) {
+//                        imageByteString = imageByteString + (b + " ");
+//                    }
+//                    Log.d("DEBUG: ReviewAndRatingActivity","imageByteString: "+imageByteString);
                 }else{
 
                 }

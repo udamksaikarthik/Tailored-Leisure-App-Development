@@ -50,9 +50,15 @@ public class ReviewAdapter extends ArrayAdapter<Review>{
         byte[] byteArray = getItem(position).getUserImage();
         if(byteArray!=null){
             Log.d("DEBUG: ReviewAdapter", "byteArray: "+byteArray);
-            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            Log.d("DEBUG: ReviewAdapter", "bmp: "+bmp);
-            userImageViewReviewId.setImageBitmap(bmp);
+            try {
+                // Decode byte array into Bitmap
+                Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                Log.d("DEBUG: ReviewAdapter", "bmp: "+bmp);
+                userImageViewReviewId.setImageBitmap(bmp);
+            } catch (Exception e) {
+                // Exception occurred during decoding
+                Log.e("DEBUG: BitmapConversion", "Error decoding byte array", e);
+            }
         }
 
         return convertView;
