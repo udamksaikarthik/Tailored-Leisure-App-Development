@@ -1,8 +1,13 @@
 package com.project.tailoredleisureappdevelopment.entities;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import java.sql.Blob;
 import java.util.Date;
-
+/*
+This is a entity class for Review table.
+This is similar to an pojo class in java.
+ */
 public class Review {
 
     private int reviewId;

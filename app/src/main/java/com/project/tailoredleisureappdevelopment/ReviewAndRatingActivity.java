@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,6 +38,7 @@ import java.util.Base64;
 
 
 public class ReviewAndRatingActivity extends AppCompatActivity {
+    //Global Variables
     private Button rateTheVenueBtnId;
     private ConstraintLayout rateTheVenueViewId;
     private Button submitUserReviewBtnId;
@@ -51,6 +54,9 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
     private Button addImageBtnId;
     private ImageView imageView;
 
+    /*
+    The onCreate method is the start of the Layout Activity
+     */
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,7 +1,11 @@
 package com.project.tailoredleisureappdevelopment.entities;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import java.io.Serializable;
-
+/*
+This is similar to a pojo class in java for PLACES information.
+ */
 public class Place implements Serializable{
     private String address;
     private String name;

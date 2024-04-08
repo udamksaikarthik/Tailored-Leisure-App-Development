@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -46,6 +48,7 @@ import java.util.Locale;
 
 public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    //Global Variables
     private final int FINE_PERMISSION_CODE = 1;
     private GoogleMap gMap;
     Location currentLocation;
@@ -64,6 +67,10 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
     private com.project.tailoredleisureappdevelopment.entities.Place placeObj;
 
     private Button venueSearchBtnId;
+
+    /*
+    The onCreate method is the start of the Layout Activity
+     */
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,6 +133,20 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
         // Asking and checking for device location permissions
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
+            //retrives most recent cached device location
+            Task<Location> task = fusedLocationProviderClient.getLastLocation();
+
+            task.addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if(location!=null){
+                        currentLocation = location;
+
+                        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.id_venues_map);
+                        mapFragment.getMapAsync(VenuesMapsActivity.this);
+                    }
+                }
+            });
             return;
         }
 

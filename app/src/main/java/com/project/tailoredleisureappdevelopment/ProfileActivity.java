@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    //Global Variables
     private Button profileBtnId;
 
     private EditText firstName;
@@ -45,6 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
     private ArrayList<Need> needsList;
     private Boolean BooleanFlgCheckBoxLimit = false;
 
+    /*
+    The onCreate method is the start of the Layout Activity
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

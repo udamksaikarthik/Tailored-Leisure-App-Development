@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +27,8 @@ import java.util.ArrayList;
 
 public class VenuesMapsActivityInfo extends AppCompatActivity {
 
+    //Global Variables
+
     private Place placeObj;
 
     private EditText venueName;
@@ -40,6 +44,9 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
     private EditText venueOverallTLRatingEditTxtId;
     private EditText venueTailoredRatingEditTxtId;
 
+    /*
+    The onCreate method is the start of the Layout Activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

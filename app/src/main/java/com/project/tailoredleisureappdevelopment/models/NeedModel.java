@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment.models;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.util.Log;
 
 import com.project.tailoredleisureappdevelopment.entities.Need;
@@ -9,12 +11,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+/*
+This is Need Table Model class.
+It helps with database commands for Need Table.
+ */
 public class NeedModel {
     public Need need;
 
     Connection conn;
+    /*
+    The addNeed Method helps to add a need into NEED table.
 
+     * @param (db the Object of Database Class, n the object of Need Class).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public void addNeed(Database db, Need n) throws SQLException {
         conn = db.getConnection();
         Log.d("DEBUG: NeedModel", "Inside addNeed method.");
@@ -37,6 +47,13 @@ public class NeedModel {
 
     }
 
+    /*
+    The getNeeds Method helps to fetch all needs from NEED table.
+
+     * @param (db the Object of Database Class).
+     * @return the ArrayList of Needs.
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public ArrayList<Need> getNeeds(Database db) throws SQLException{
         ArrayList<Need> needsList = new ArrayList<>();
         conn = db.getConnection();
@@ -66,6 +83,12 @@ public class NeedModel {
     }
 
 
+    /*
+    The deleteNeeds method helps to delete a need on the database from PERSON_NEED and NEED Tables.
+
+     * @param (db the Object of Database Class, userNeeds is arrayList of String).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public void deleteNeeds(Database db, ArrayList<String> userNeeds) throws SQLException {
         conn = db.getConnection();
         Log.d("DEBUG: NeedModel", "Inside deleteNeeds method.");

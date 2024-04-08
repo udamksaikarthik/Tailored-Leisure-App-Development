@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 
 public class EditNeedsActivity extends AppCompatActivity {
 
+    //Global Variables
     private final static  int USER_NEEDS_LIMIT = 50;
     private String checkBoxPrfTxt;
     private CheckBox checkBoxIdPrf;
@@ -40,6 +43,9 @@ public class EditNeedsActivity extends AppCompatActivity {
     private EditText addNeedLongDescEditTxtId;
     private ConstraintLayout yourneedsRadioGroupId;
 
+    /*
+    The onCreate method is the start of the Layout Activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

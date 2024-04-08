@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment.models;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.util.Log;
 
 import com.project.tailoredleisureappdevelopment.entities.Person;
@@ -8,7 +10,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+/*
+This is Database class.
+This class helps to establish database connection.
+ */
 public class Database {
 
     private Connection connection;
@@ -26,6 +31,9 @@ public class Database {
     {
     }
 
+    /*
+    This getConnection method establishs the db connection
+     */
     public Connection getConnection()
     {
         Connection c = null;
@@ -47,6 +55,11 @@ public class Database {
         return c;
     }
 
+    /*
+    This closeConnection method closes the db connection
+
+     * @param conn the Connection instance
+     */
     public void closeConnection(Connection conn) throws SQLException {
         conn.close();
     }

@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment.models;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.content.Intent;
 import android.util.Log;
 
@@ -14,7 +16,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+/*
+This is Person Table Model class.
+It helps with database commands for Person Table.
+ */
 public class PersonModel {
 
     public static Person personDetails;
@@ -26,6 +31,12 @@ public class PersonModel {
 
     private Connection conn;
 
+    /*
+    The addPerson method helps to add a person/user on the database into PERSON table.
+
+     * @param (db the Object of Database Class, person the Object of Person Class).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public void addPerson(Database db, Person person) throws SQLException {
         int person_id = 0;
         conn = db.getConnection();
@@ -65,6 +76,13 @@ public class PersonModel {
         db.closeConnection(conn);
     }
 
+    /*
+    The authenticateUser method helps to authenticate a person/user on the database from PERSON table.
+
+     * @param (db the Object of Database Class, loginEmailTxt is a string value of logged-in-user-email).
+     * @return the boolean value (True/ False).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public Boolean authenticateUser(Database db, String loginEmailTxt) throws SQLException {
         personDetails = new Person();
         personObj = new Person();
@@ -126,6 +144,12 @@ public class PersonModel {
         return authencticationFlag;
     }
 
+    /*
+    The updatePerson method helps to update a person/user details/information on the database into PERSON table.
+
+     * @param (db the Object of Database Class, person is an Object of Person Class).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public void updatePerson(Database db, Person person) throws SQLException {
         conn = db.getConnection();
         Log.d("DEBUG: PersonModel", "Inside updatePerson method.");

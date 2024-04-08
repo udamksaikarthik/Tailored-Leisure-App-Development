@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 public class ReviewAdapter extends ArrayAdapter<Review>{
+
+    //Global Variables
 
     private Context mContext;
     private int mResource;

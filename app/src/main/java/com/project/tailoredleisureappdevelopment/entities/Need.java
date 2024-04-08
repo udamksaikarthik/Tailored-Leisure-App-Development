@@ -1,5 +1,11 @@
 package com.project.tailoredleisureappdevelopment.entities;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
+/*
+This a entity class for NEED table.
+This is similar to an pojo class in java.
+ */
 public class Need {
     private int need_id;
     private String need_short_desc;

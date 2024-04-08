@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment.models;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -51,10 +53,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/*
+This is Review Table Model class.
+It helps with database commands for Review Table.
+ */
 public class ReviewModel {
     private Connection conn;
 
+    /*
+    The addReview method helps to add a review into REVIEW table.
+
+     * @param (db the Object of Database Class, userReview is a string value of user provided review on UI,
+                userRating is a Float value of user provided rating on UI, placeId is a String value which is unique Place/Venue location ID,
+                placeName is a string value which is a venue/place location name, personId is a int value which is unique person id from person table,
+                personName is person name from person table, imageByte is byteArray version of image information that user provided).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addReview(Database db, String userReview, Float userRating, String placeId, String placeName, int personId, String personName, byte[] imageByte) throws SQLException {
         LocalDate currentDate = LocalDate.now();
@@ -79,6 +93,14 @@ public class ReviewModel {
         db.closeConnection(conn);
     }
 
+    /*
+    The checkIfUserReviewed method helps to check if user has already reviewed a place/ venue.
+
+     * @param (db the Object of Database Class, placeId is a String value which is unique Place/Venue location ID,
+                personId is a int value which is unique person id from person table ).
+     * @return the boolean value (True/ False).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public Boolean checkIfUserReviewed(Database db, String placeId, int personId) throws SQLException {
         Boolean flg = true;
         conn = db.getConnection();
@@ -102,6 +124,14 @@ public class ReviewModel {
         return flg;
     }
 
+    /*
+    The getuserReviewDetails method helps to fetch review details of user from database from REVIEW table.
+
+     * @param (db the Object of Database Class, placeId is a String value which is unique Place/Venue location ID,
+                personId is a int value which is unique person id from person table ).
+     * @return the ArrayList of Objects.
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public ArrayList<Object> getuserReviewDetails(Database db, String placeId, int personId) throws SQLException {
         ArrayList<Object> userReviewDetails = new ArrayList<>();
         conn = db.getConnection();
@@ -124,6 +154,15 @@ public class ReviewModel {
     }
 
 
+    /*
+    The editReview method helps to edit the user review on a specific venue/ place.
+
+     * @param (db the Object of Database Class, userReview is a string value of user provided review on UI,
+                userRating is a Float value of user provided rating on UI, placeId is a String value which is unique Place/Venue location ID,
+                personId is a int value which is unique person id from person table,
+                imageByte is byteArray version of image information that user provided).
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public void editReview(Database db, Float userRating, String userReview, String placeId, int personId, byte[] imageByte) throws SQLException{
         conn = db.getConnection();
         String editReviewQuery = "UPDATE REVIEW SET RATING = '"+userRating+"', REVIEW = '"+userReview+"', USER_IMAGE = '"+imageByte+"' WHERE PLACE_ID = '"+placeId.trim()+"' AND PERSON_ID = '"+personId+"'";
@@ -139,6 +178,13 @@ public class ReviewModel {
         db.closeConnection(conn);
     }
 
+    /*
+    The getPlaceReviews method helps to fetch all user reviews on a specific venue/place.
+
+     * @param (db the Object of Database Class, placeId is a String value which is unique Place/Venue location ID).
+     * @return the ArrayList of Reviews.
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public ArrayList<Review> getPlaceReviews(Database db, String placeId) throws SQLException{
         ArrayList<Review> reviewList = new ArrayList<>();
         conn = db.getConnection();
@@ -191,6 +237,13 @@ public class ReviewModel {
         return byteArray;
     }
 
+    /*
+    The getOverallTailoredLeisureRating method helps to calculate overall TL users rating from the database.
+
+     * @param (db the Object of Database Class, placeId is a String value which is unique Place/Venue location ID).
+     * @return the ArrayList of Rating Float values.
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public ArrayList<Float> getOverallTailoredLeisureRating(Database db, String placeId) throws SQLException{
         ArrayList<Float> getOverallTailoredLeisureRatingList = new ArrayList<>();
         conn = db.getConnection();
@@ -211,6 +264,14 @@ public class ReviewModel {
         return getOverallTailoredLeisureRatingList;
     }
 
+    /*
+    The getTailoredLeisureRating method helps to calculate Tailored Rating of specific user needs from the database.
+
+     * @param (db the Object of Database Class, placeId is a String value which is unique Place/Venue location ID,
+                userNeeds the ArrayList of String containing userneed values).
+     * @return the ArrayList of Rating Float values.
+     * @throws SQLException if there is an issue with database connection/ Query.
+     */
     public ArrayList<Float> getTailoredLeisureRating(Database db, String placeId, ArrayList<String> userNeeds) throws SQLException{
         ArrayList<Float> getOverallTailoredLeisureRatingList = new ArrayList<>();
         conn = db.getConnection();

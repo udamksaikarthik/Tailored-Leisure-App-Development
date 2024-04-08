@@ -1,5 +1,7 @@
 package com.project.tailoredleisureappdevelopment;
-
+/*
+Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
+ */
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -20,7 +22,7 @@ import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    //Global Variables
     private Person person;
     private Button venuesBtn;
     private Button profileBtn;
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout authentication_section_container_id;
 
     //MainActivity Starts here...
+    /*
+    The onCreate method is the start of the Layout Activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
