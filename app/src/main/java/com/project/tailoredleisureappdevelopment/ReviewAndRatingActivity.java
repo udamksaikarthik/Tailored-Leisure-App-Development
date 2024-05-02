@@ -10,6 +10,7 @@ import android.media.Rating;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +56,8 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
     private Button addImageBtnId;
     private ImageView imageView;
 
+    private TextView loading_review_id;
+    private RatingBar review_rating_id;
     /*
     The onCreate method is the start of the Layout Activity
      */
@@ -62,9 +66,12 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_rating);
 
+        final Handler handler = new Handler();
         placeObj = (Place) getIntent().getSerializableExtra("PLACE_OBJECT");
         rateTheVenueBtnId = (Button) findViewById(R.id.rateTheVenueBtnId);
+        review_rating_id = (RatingBar) findViewById(R.id.review_rating_id);
         rateTheVenueViewId = (ConstraintLayout) findViewById(R.id.rateTheVenueViewId);
+        loading_review_id = (TextView) findViewById(R.id.loading_review_id);
         submitUserReviewBtnId = (Button) findViewById(R.id.submitUserReviewBtnId);
         personId = PersonModel.personDetails.getPerson_id();
         personName = PersonModel.personDetails.getFirstName();
@@ -74,26 +81,43 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
         db = new Database();
         addImageBtnId = (Button) findViewById(R.id.addImageBtnId);
         imageView = (ImageView) findViewById(R.id.imageView);
+        rateTheVenueBtnId.setVisibility(View.GONE);
 
-        try {
-            if(reviewModel.checkIfUserReviewed(db, placeObj.getPlaceId().trim(),personId)){
-                rateTheVenueBtnId.setText("Edit Review");
-            }else{
-                rateTheVenueBtnId.setText("Rate the Venue");
-            }
-            reviewsList = reviewModel.getPlaceReviews(db, placeObj.getPlaceId().trim());
-            ArrayList<String> reviewsToStringList = new ArrayList<>();
-            for(Review r: reviewsList){
-                reviewsToStringList.add(r.toString());
-            }
-            // on the below line we are initializing the adapter for our list view.
-            ReviewAdapter reviewAdapter = new ReviewAdapter(this, R.layout.activity_list_view, reviewsList);
+        Runnable runnable1 = new Runnable() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if(reviewModel.checkIfUserReviewed(db, placeObj.getPlaceId().trim(),personId)){
+                                rateTheVenueBtnId.setText("Edit Review");
+                            }else{
+                                rateTheVenueBtnId.setText("Rate the Venue");
+                            }
+                            reviewsList = reviewModel.getPlaceReviews(db, placeObj.getPlaceId().trim());
+                            ArrayList<String> reviewsToStringList = new ArrayList<>();
+                            for(Review r: reviewsList){
+                                reviewsToStringList.add(r.toString());
+                            }
+                            // on the below line we are initializing the adapter for our list view.
+                            ReviewAdapter reviewAdapter = new ReviewAdapter(ReviewAndRatingActivity.this, R.layout.activity_list_view, reviewsList);
+                            rateTheVenueBtnId.setVisibility(View.VISIBLE);
+                            loading_review_id.setVisibility(View.GONE);
 
-            // on below line we are setting adapter for our list view.
-            usersReviewsPlaceListViewId.setAdapter(reviewAdapter);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+                            // on below line we are setting adapter for our list view.
+                            usersReviewsPlaceListViewId.setAdapter(reviewAdapter);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+            }
+        };
+
+        Thread thread1 = new Thread(runnable1);
+        thread1.start();
+
 
 
         rateTheVenueBtnId.setOnClickListener(new View.OnClickListener() {
@@ -142,23 +166,32 @@ public class ReviewAndRatingActivity extends AppCompatActivity {
                 String userReview = userReviewEditTxtId.getText().toString();
                 Float userRating = userRatingBarId.getRating();
                 imageView = (ImageView) findViewById(R.id.imageView);
-                Bitmap bitmap=((BitmapDrawable)imageView.getDrawable()).getBitmap();
                 byte[] imageByte = new byte[0];
-                if(bitmap!=null){
-                    Log.d("DEBUG: ReviewAndRatingActivity","bitmap: "+bitmap);
-                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
-                    imageByte = byteArray.toByteArray();
-                    Log.d("DEBUG: ReviewAndRatingActivity","imageByte: "+imageByte);
+                Log.d("DEBUG: ReviewAndRatingActivity","imageView: "+imageView);
+                Log.d("DEBUG: ReviewAndRatingActivity","imageView.getDrawable(): "+imageView.getDrawable());
+                if(imageView.getDrawable() != null){
+                    Log.d("DEBUG: ReviewAndRatingActivity","imageView is not null");
+                    Bitmap bitmap=((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                    if(bitmap!=null){
+                        Log.d("DEBUG: ReviewAndRatingActivity","bitmap: "+bitmap);
+                        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArray);
+                        imageByte = byteArray.toByteArray();
+                        Log.d("DEBUG: ReviewAndRatingActivity","imageByte: "+imageByte);
 //                    String imageByteString = "";
 //                    // Iterate over the byte array and print each element
 //                    for (byte b : imageByte) {
 //                        imageByteString = imageByteString + (b + " ");
 //                    }
 //                    Log.d("DEBUG: ReviewAndRatingActivity","imageByteString: "+imageByteString);
-                }else{
+                    }else{
 
+                    }
+                }else{
+                    Log.d("DEBUG: ReviewAndRatingActivity","imageView is null");
+                    imageByte = null;
                 }
+
 
                 Log.d("DEBUG: ReviewAndRatingActivity","userReview: "+userReview);
                 Log.d("DEBUG: ReviewAndRatingActivity","userRating: "+userRating);

@@ -49,6 +49,7 @@ import java.util.Locale;
 public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     //Global Variables
+    private final String google_places_api_key = "AIzaSyAAnchBf4s7Nr-9cU9K3jUiUGvdioi-5ig";
     private final int FINE_PERMISSION_CODE = 1;
     private GoogleMap gMap;
     Location currentLocation;
@@ -87,11 +88,11 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
 
-        Places.initialize(getApplicationContext(),"AIzaSyAAnchBf4s7Nr-9cU9K3jUiUGvdioi-5ig");
+        Places.initialize(getApplicationContext(),google_places_api_key);
 
         if(Places.isInitialized()){
             Log.d("VenuesMapsActivity", "Initializing the Places.");
-            Places.initialize(getApplicationContext(),"AIzaSyAAnchBf4s7Nr-9cU9K3jUiUGvdioi-5ig");
+            Places.initialize(getApplicationContext(),google_places_api_key);
         }else{
             Log.d("VenuesMapsActivity", "Places are already intialized.");
         }
@@ -119,8 +120,10 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     private void openActivityVenueInfo(){
+        Log.d("VenuesMapsActivity: DEBUG", "openActivityVenueInfo METHOD: called.");
         Intent intent = new Intent(VenuesMapsActivity.this, VenuesMapsActivityInfo.class);
         intent.putExtra("PLACE_OBJECT", (Serializable) placeObj);
+        Log.d("VenuesMapsActivity: DEBUG", "placeObj: "+placeObj.toString());
         startActivity(intent);
     }
 
@@ -128,25 +131,12 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
 
 
     private void getLastLocation() {
-        Log.d("VenuesMapsActivity", "getLastLocation: called.");
+        Log.d("VenuesMapsActivity: DEBUG", "getLastLocation: called.");
 
         // Asking and checking for device location permissions
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
-            //retrives most recent cached device location
-            Task<Location> task = fusedLocationProviderClient.getLastLocation();
 
-            task.addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if(location!=null){
-                        currentLocation = location;
-
-                        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.id_venues_map);
-                        mapFragment.getMapAsync(VenuesMapsActivity.this);
-                    }
-                }
-            });
             return;
         }
 
@@ -156,11 +146,15 @@ public class VenuesMapsActivity extends AppCompatActivity implements OnMapReadyC
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
+                Log.d("VenuesMapsActivity: DEBUG", "getLastLocation: onSuccess.");
                 if(location!=null){
+                    Log.d("VenuesMapsActivity: DEBUG", "location is not null.");
                     currentLocation = location;
 
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.id_venues_map);
                     mapFragment.getMapAsync(VenuesMapsActivity.this);
+                }else{
+                    Log.d("VenuesMapsActivity: DEBUG", "location is null.");
                 }
             }
         });

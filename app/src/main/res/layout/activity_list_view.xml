@@ -4,27 +4,219 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ListViewActivity">
 
-    <TextView
-        android:id="@+id/listViewReviewTextId"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:textAlignment="center"
-        android:textColor="@color/app_blue"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vr_0.5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/listViewReviewTextId5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:padding="3dp"
+            android:text="User: "
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_blue"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vr_0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/username_review_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:fontFamily="@font/roboto"
+            android:padding="5dp"
+            android:text="..."
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_blue"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vr_0.5"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vr_0.5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/listViewReviewTextId5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:padding="3dp"
+            android:text="Rating: "
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_blue"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vr_0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/review_rating_id"
+            style="@style/star_butterfly_bar"
+            android:layout_width="149dp"
+            android:layout_height="30dp"
+            android:focusableInTouchMode="false"
+            android:isIndicator="true"
+            android:maxHeight="60dp"
+            android:minHeight="60dp"
+            android:numStars="5"
+            android:rating="3"
+            android:saveEnabled="false"
+            android:stepSize="1.0"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/listViewReviewTextId5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vr_0.5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/listViewReviewTextId5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:padding="3dp"
+            android:text="Reviewed Date: "
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_blue"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vr_0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/reviewed_date_review_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:fontFamily="@font/roboto"
+            android:padding="5dp"
+            android:text="..."
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_blue"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vr_0.5"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/userImageViewReviewId"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vr_0.5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/listViewReviewTextId5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:padding="3dp"
+            android:text="Review: "
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_blue"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/review_review_id"
+            app:layout_constraintEnd_toEndOf="@+id/review_review_id"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/review_review_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#D3D1D1"
+            android:fontFamily="@font/roboto"
+            android:padding="3dp"
+            android:text="..."
+            android:textAlignment="viewStart"
+            android:textColor="@color/app_blue"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/listViewReviewTextId5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/userImageViewReviewId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="5dp"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listViewReviewTextId" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

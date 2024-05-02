@@ -188,7 +188,7 @@ public class ReviewModel {
     public ArrayList<Review> getPlaceReviews(Database db, String placeId) throws SQLException{
         ArrayList<Review> reviewList = new ArrayList<>();
         conn = db.getConnection();
-        String getPlaceReviews = "SELECT * FROM REVIEW WHERE PLACE_ID = '"+ placeId.trim()+"'";
+        String getPlaceReviews = "SELECT * FROM REVIEW WHERE PLACE_ID = '"+ placeId.trim()+"' AND APPROVED = 'true'";
         Log.d("DEBUG: ReviewModel", "getPlaceReviews: "+getPlaceReviews);
         Statement stmt = null;
         try {
@@ -247,7 +247,7 @@ public class ReviewModel {
     public ArrayList<Float> getOverallTailoredLeisureRating(Database db, String placeId) throws SQLException{
         ArrayList<Float> getOverallTailoredLeisureRatingList = new ArrayList<>();
         conn = db.getConnection();
-        String getOverallTailoredLeisureRatingQuery = "SELECT RATING FROM REVIEW WHERE PLACE_ID = '"+ placeId.trim()+"'";
+        String getOverallTailoredLeisureRatingQuery = "SELECT RATING FROM REVIEW WHERE PLACE_ID = '"+ placeId.trim()+"' AND APPROVED = 'true'";
         Log.d("DEBUG: ReviewModel", "getOverallTailoredLeisureRatingQuery: "+getOverallTailoredLeisureRatingQuery);
         Statement stmt = null;
         try {
@@ -275,20 +275,22 @@ public class ReviewModel {
     public ArrayList<Float> getTailoredLeisureRating(Database db, String placeId, ArrayList<String> userNeeds) throws SQLException{
         ArrayList<Float> getOverallTailoredLeisureRatingList = new ArrayList<>();
         conn = db.getConnection();
-        Log.d("DEBUG: ReviewModel", "userNeeds: "+userNeeds);
-        for(String userNeed: userNeeds) {
-            String getTailoredLeisureRatingQuery = "SELECT R.RATING FROM REVIEW R JOIN PERSON P ON P.PERSON_ID = R.PERSON_ID JOIN PERSON_NEED PN ON PN.PERSON_ID = R.PERSON_ID JOIN NEED N ON N.NEED_ID = PN.NEED_ID WHERE R.PLACE_ID = '"+ placeId.trim()+"' AND N.NEED_SHORT_DESC ='"+userNeed.trim()+"'";
-            Log.d("DEBUG: ReviewModel", "getTailoredLeisureRatingQuery: "+getTailoredLeisureRatingQuery);
-            Statement stmt = null;
-            try {
-                stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(getTailoredLeisureRatingQuery);
-                while(rs.next()){
-                    getOverallTailoredLeisureRatingList.add(rs.getFloat("RATING"));
+        if(userNeeds!=null){
+            Log.d("DEBUG: ReviewModel", "userNeeds: "+userNeeds);
+            for(String userNeed: userNeeds) {
+                String getTailoredLeisureRatingQuery = "SELECT R.RATING FROM REVIEW R JOIN PERSON P ON P.PERSON_ID = R.PERSON_ID JOIN PERSON_NEED PN ON PN.PERSON_ID = R.PERSON_ID JOIN NEED N ON N.NEED_ID = PN.NEED_ID WHERE R.PLACE_ID = '"+ placeId.trim()+"' AND N.NEED_SHORT_DESC ='"+userNeed.trim()+"' AND R.APPROVED = 'true'";
+                Log.d("DEBUG: ReviewModel", "getTailoredLeisureRatingQuery: "+getTailoredLeisureRatingQuery);
+                Statement stmt = null;
+                try {
+                    stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(getTailoredLeisureRatingQuery);
+                    while(rs.next()){
+                        getOverallTailoredLeisureRatingList.add(rs.getFloat("RATING"));
+                    }
+                }catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                    throw new RuntimeException(e);
                 }
-            }catch (SQLException e) {
-                System.out.println(e.getMessage());
-                throw new RuntimeException(e);
             }
         }
         db.closeConnection(conn);

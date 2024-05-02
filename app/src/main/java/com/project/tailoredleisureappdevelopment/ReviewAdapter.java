@@ -5,13 +5,16 @@ Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Rating;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,11 +48,19 @@ public class ReviewAdapter extends ArrayAdapter<Review>{
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         convertView = layoutInflater.inflate(mResource, parent, false);
 
-        TextView listViewReviewTextId = (TextView) convertView.findViewById(R.id.listViewReviewTextId);
+        EditText userNameReviewId = (EditText) convertView.findViewById(R.id.username_review_id);
+        RatingBar ratingReviewId =  (RatingBar) convertView.findViewById(R.id.review_rating_id);
+        EditText reviewedDateReviewId = (EditText) convertView.findViewById(R.id.reviewed_date_review_id);
+        TextView reviewReviewId = (TextView) convertView.findViewById(R.id.review_review_id);
 
         ImageView userImageViewReviewId = (ImageView) convertView.findViewById(R.id.userImageViewReviewId);
 
-        listViewReviewTextId.setText(getItem(position).toString());
+        userNameReviewId.setText(getItem(position).getPersonName().trim());
+        ratingReviewId.setRating(getItem(position).getRating());
+        reviewedDateReviewId.setText(getItem(position).getReviewedDate().toString());
+        reviewReviewId.setText(getItem(position).getReview().trim());
+
+
 
         byte[] byteArray = getItem(position).getUserImage();
         if(byteArray!=null){
@@ -62,6 +73,26 @@ public class ReviewAdapter extends ArrayAdapter<Review>{
             } catch (Exception e) {
                 // Exception occurred during decoding
                 Log.e("DEBUG: BitmapConversion", "Error decoding byte array", e);
+            }
+        }
+
+        for(int i=position+1;i<100; i++){
+
+            if(i==1){
+                userImageViewReviewId.setImageResource(R.drawable.haveli001);
+                break;
+            }else if(i==2){
+                userImageViewReviewId.setImageResource(R.drawable.haveli002);
+                break;
+            }else if(i==3){
+                userImageViewReviewId.setImageResource(R.drawable.haveli003);
+                break;
+            }else if(i==4){
+                userImageViewReviewId.setImageResource(R.drawable.haveli004);
+                break;
+            }else{
+                userImageViewReviewId.setImageResource(R.drawable.haveli001);
+                break;
             }
         }
 

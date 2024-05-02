@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/loading_review_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading ..."
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vr_1"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vr_0.0"
+        app:layout_constraintTop_toTopOf="@+id/usersReviewsPlaceListViewId" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rateTheVenueViewId"
         android:layout_width="0dp"

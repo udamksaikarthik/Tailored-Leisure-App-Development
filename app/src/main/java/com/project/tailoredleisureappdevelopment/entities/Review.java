@@ -27,7 +27,7 @@ public class Review {
 
     @Override
     public String toString() {
-        return  " PersonName: " + personName +
+        return  " Reviewed By: " + personName +
                 "\nRating: " + rating+
                 "\nReviewed Date: " + reviewedDate +
                 "\nApproved: " + approved +

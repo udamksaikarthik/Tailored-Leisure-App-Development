@@ -5,6 +5,7 @@ Authors: Saikarthik Uda (Technical Lead), Ebere Janet Eboh, Prathyusha Kamma.
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -51,14 +52,12 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_info);
-
+        final Handler handler = new Handler();
         placeObj = (Place) getIntent().getSerializableExtra("PLACE_OBJECT");
         venueName = (EditText) findViewById(R.id.venueNameEditTxtId);
         venueWebsite = (EditText) findViewById(R.id.venueWebsiteEditTxtId);
         venuePhone = (EditText) findViewById(R.id.venuePhoneEditTxtId);
         venueGoogleRating = (EditText) findViewById(R.id.venueGoogleRatingEditTxtId);
-        venueOverallTailoredRating = (EditText) findViewById(R.id.venueOverallTLRatingEditTxtId);
-        venueTailoredRating = (EditText) findViewById(R.id.venueTailoredRatingEditTxtId);
         bookBtn = (Button) findViewById(R.id.bookVenueBtn);
         reviewVenueBtn = (Button) findViewById(R.id.reviewVenueBtn);
         venueOverallTLRatingEditTxtId = (EditText) findViewById(R.id.venueOverallTLRatingEditTxtId);
@@ -66,12 +65,6 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         reviewModel = new ReviewModel();
         db = new Database();
 
-        venueName.setFocusable(false);
-        venueWebsite.setFocusable(false);
-        venuePhone.setFocusable(false);
-        venueGoogleRating.setFocusable(false);
-        venueOverallTailoredRating.setFocusable(false);
-        venueTailoredRating.setFocusable(false);
         DecimalFormat df = new DecimalFormat("#.0");
 
         venueName.setText(placeObj.getName());
@@ -79,44 +72,80 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         venuePhone.setText(placeObj.getPhoneNumber());
         venueGoogleRating.setText(placeObj.getRating().toString() +" (" +placeObj.getUserRatingsTotal().toString()+")");
 
-        try {
-            ArrayList<Float> overallTailoredLeisureRatingList = reviewModel.getOverallTailoredLeisureRating(db, placeObj.getPlaceId().trim());
-            if(!overallTailoredLeisureRatingList.isEmpty()){
-                Float avg = 0.0f;
-                int countUsers = 0;
-                for(int i=0; i<overallTailoredLeisureRatingList.size(); i++){
-                    avg = avg + overallTailoredLeisureRatingList.get(i);
-                    countUsers++;
-                }
-                Float overallTailoredLeisureRating= avg/countUsers;
-                venueOverallTLRatingEditTxtId.setText(df.format(overallTailoredLeisureRating)+" ("+countUsers+")");
+        Runnable runnable1 = new Runnable() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ArrayList<Float> overallTailoredLeisureRatingList = reviewModel.getOverallTailoredLeisureRating(db, placeObj.getPlaceId().trim());
+                            if(!overallTailoredLeisureRatingList.isEmpty()){
+                                Float avg = 0.0f;
+                                int countUsers = 0;
+                                for(int i=0; i<overallTailoredLeisureRatingList.size(); i++){
+                                    avg = avg + overallTailoredLeisureRatingList.get(i);
+                                    countUsers++;
+                                }
+                                Float overallTailoredLeisureRating= avg/countUsers;
+                                venueOverallTLRatingEditTxtId.setText(df.format(overallTailoredLeisureRating)+" ("+countUsers+")");
 
-            }else{
-                venueOverallTLRatingEditTxtId.setText("No Ratings.");
+                            }else{
+                                venueOverallTLRatingEditTxtId.setText("No Ratings.");
+                            }
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try
-        {
-            ArrayList<Float> TailoredLeisureRatingList = reviewModel.getTailoredLeisureRating(db, placeObj.getPlaceId().trim(), PersonModel.needIds);
-            if(!TailoredLeisureRatingList.isEmpty()){
-                Float avg = 0.0f;
-                int countUsers = 0;
-                for(int i=0; i<TailoredLeisureRatingList.size(); i++){
-                    avg = avg + TailoredLeisureRatingList.get(i);
-                    countUsers++;
-                }
-                Float TailoredLeisureRating= avg/countUsers;
-                venueTailoredRatingEditTxtId.setText(df.format(TailoredLeisureRating)+" ("+countUsers+")");
+        };
 
-            }else{
-                venueTailoredRatingEditTxtId.setText("No Ratings.");
+        Thread thread1 = new Thread(runnable1);
+        thread1.start();
+
+        Runnable runnable2 = new Runnable() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try
+                        {
+                            ArrayList<Float> TailoredLeisureRatingList = reviewModel.getTailoredLeisureRating(db, placeObj.getPlaceId().trim(), PersonModel.needIds);
+                            if(!TailoredLeisureRatingList.isEmpty()){
+                                Float avg = 0.0f;
+                                int countUsers = 0;
+                                for(int i=0; i<TailoredLeisureRatingList.size(); i++){
+                                    avg = avg + TailoredLeisureRatingList.get(i);
+                                    countUsers++;
+                                }
+                                Float TailoredLeisureRating= avg/countUsers;
+                                venueTailoredRatingEditTxtId.setText(df.format(TailoredLeisureRating)+" ("+countUsers+")");
+
+                            }else{
+                                venueTailoredRatingEditTxtId.setText("No Ratings.");
+                            }
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        };
 
+
+        Thread thread2 = new Thread(runnable2);
+        thread2.start();
+
+
+        venueName.setFocusable(false);
+        venueWebsite.setFocusable(false);
+        venuePhone.setFocusable(false);
+        venueGoogleRating.setFocusable(false);
+        venueOverallTLRatingEditTxtId.setFocusable(false);
+        venueTailoredRatingEditTxtId.setFocusable(false);
 
         bookBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -144,5 +173,15 @@ public class VenuesMapsActivityInfo extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void Thread1(){
+        for(int i=1;i<=5;i++){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
 
 }
